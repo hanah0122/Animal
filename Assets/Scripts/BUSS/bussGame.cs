@@ -5,6 +5,7 @@ using AssemblyCSharp.Assets.Scripts.BUSS;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
+
 public class bussGame : MonoBehaviour
 {
     public infoTime _infoTime = new infoTime();
@@ -40,13 +41,17 @@ public class bussGame : MonoBehaviour
     [SerializeField] Text _txtTime;
     [SerializeField] Text txtPoint;
     [SerializeField] Text txtLevel;
+    [SerializeField] Text txtAdmob;
     [SerializeField] Text txtTextContinue;
+    [SerializeField] Image _pnLose;
     [SerializeField] Image _pnGame;
     [SerializeField] Image _pnLoadGame;
     [SerializeField] Image _pnNewGame;
     [SerializeField] Image _pnTop;
     [SerializeField] Image _pnMenu;
+
     [SerializeField] GameObject Audio;
+
     //matrix
     public infoPikachu[,] _matrix;
 
@@ -88,47 +93,56 @@ public class bussGame : MonoBehaviour
         //_infoBus._level = 60;
         if (_infoBus._level < 5)
         {
-            rows = 8; cols = 14;
+            rows = 8;
+            cols = 14;
         }
 
         if (_infoBus._level >= 5)
         {
-            rows = 8; cols = 16;
+            rows = 8;
+            cols = 16;
         }
 
         if (_infoBus._level >= 10 && _infoBus._level < 15)
         {
-            rows = 8; cols = 18;
+            rows = 8;
+            cols = 18;
         }
 
         if (_infoBus._level >= 15 && _infoBus._level < 20)
         {
-            rows = 10; cols = 18;
+            rows = 10;
+            cols = 18;
         }
 
         if (_infoBus._level >= 20 && _infoBus._level < 25)
         {
-            rows = 10; cols = 20;
+            rows = 10;
+            cols = 20;
         }
 
         if (_infoBus._level >= 25 && _infoBus._level < 30)
         {
-            rows = 12; cols = 20;
+            rows = 12;
+            cols = 20;
         }
 
         if (_infoBus._level >= 30 && _infoBus._level < 35)
         {
-            rows = 12; cols = 20;
+            rows = 12;
+            cols = 20;
         }
 
         if (_infoBus._level >= 35 && _infoBus._level < 40)
         {
-            rows = 12; cols = 22;
+            rows = 12;
+            cols = 22;
         }
 
         if (_infoBus._level >= 40)
         {
-            rows = 14; cols = 24;
+            rows = 14;
+            cols = 24;
         }
 
         imgPikachu = 4; // so cap pikachu toi da trong game
@@ -142,22 +156,23 @@ public class bussGame : MonoBehaviour
         _infoCreatePikachu.Clear(); //khoi tao so hinh va so khoi cua pikachu
         if (dataGame == null)
         {
-
             int RandomImage = 0;
             List<int> imgTmp = new List<int>();
             for (int m = 0; m < img.Length; m++)
             {
                 imgTmp.Add(m);
             }
+
             for (int i = 0; i < sizePikache; i++)
             {
                 RandomImage = Random.Range(0, imgTmp.Count);
                 _infoCreatePikachu.Add(
-                new infoCreatePikachu(imgPikachu, img[imgTmp[RandomImage]],
+                    new infoCreatePikachu(imgPikachu, img[imgTmp[RandomImage]],
                         imgClick2[imgTmp[RandomImage]], imgClick[imgTmp[RandomImage]], imgTmp[RandomImage]));
 
                 imgTmp.RemoveAt(RandomImage);
             }
+
             imgTmp.Clear();
         }
         else
@@ -168,7 +183,6 @@ public class bussGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         _infoTime._particleSystem.Pause();
         started = false;
 
@@ -201,7 +215,6 @@ public class bussGame : MonoBehaviour
 
     public void BtnVua()
     {
-
         Audio.gameObject.GetComponent<bussSound>().UnPause();
         _point = _infoBus._level = 0;
         txtPoint.text = _point.ToString();
@@ -221,9 +234,9 @@ public class bussGame : MonoBehaviour
         _pnTop.gameObject.SetActive(true);
         started = true;
     }
+
     public void BtnNhanh()
     {
-
         Audio.gameObject.GetComponent<bussSound>().UnPause();
         _point = _infoBus._level = 0;
         txtPoint.text = _point.ToString();
@@ -234,7 +247,7 @@ public class bussGame : MonoBehaviour
         _pnMenu.gameObject.SetActive(false);
         btnContinueMenuTop.gameObject.SetActive(false);
         btnPause.gameObject.SetActive(true);
-        timeMenu = 3;
+        timeMenu = 1;
         _infoTime._slider.maxValue = _infoTime._gameTime = 60 * timeMenu;
         _infoTime._startTime = Time.time;
         dataGame = null;
@@ -243,6 +256,7 @@ public class bussGame : MonoBehaviour
         _pnTop.gameObject.SetActive(true);
         started = true;
     }
+
     public void BtnCham()
     {
         Audio.gameObject.GetComponent<bussSound>().UnPause();
@@ -264,6 +278,7 @@ public class bussGame : MonoBehaviour
         _pnTop.gameObject.SetActive(true);
         started = true;
     }
+
     public void MenuNewGame()
     {
         if (_matrix != null)
@@ -273,6 +288,7 @@ public class bussGame : MonoBehaviour
         _pnNewGame.gameObject.SetActive(true);
         _pnLoadGame.gameObject.SetActive(false);
     }
+
     public void MenuContinueGame()
     {
         _pnMenu.gameObject.SetActive(false);
@@ -287,10 +303,8 @@ public class bussGame : MonoBehaviour
     }
 
 
-
     void OnApplicationFocus(bool hasFocus)
     {
-
         if (!hasFocus)
         {
             if (started)
@@ -327,10 +341,12 @@ public class bussGame : MonoBehaviour
             _infoTime._timer = Time.time - _infoTime._startTime;
 
             _infoTime._coutDown = _infoTime._gameTime - _infoTime._timer;
-            if (_infoTime._coutDown > 0)
+            if (_infoTime._coutDown >= 0)
             {
                 try
                 {
+                    if (_infoTime._coutDown < 0)
+                        _infoTime._coutDown *= -1;
                     _infoTime._txtTime.text = string.Format("{0:0}:{1:00}", Mathf.FloorToInt(_infoTime._coutDown / 60),
                         Mathf.FloorToInt(_infoTime._coutDown - Mathf.FloorToInt(_infoTime._coutDown / 60) * 60));
                     _infoTime._slider.value = _infoTime._coutDown;
@@ -341,26 +357,42 @@ public class bussGame : MonoBehaviour
             }
             else
             {
-                if (_infoBus._pnGame)
-                    _infoBus._pnGame.gameObject.SetActive(false);
-                _infoTime._startTime = Time.time;
-                _point = 0;
-                txtPoint.text = _point.ToString();
-                dataGame = null;
-                winPikachu = (cols - 2) * (rows - 2);
-                if (_infoBus._level > 0)
+                try
                 {
-                    _infoBus._level -= 1;
-                    txtLevel.text = _bussLevel.txtLevel(_infoBus._level);
+                    if (_infoBus._pnGame && _pnLose)
+                    {
+                        started = false;
+                        txtAdmob.text = "Xem quảng cáo để chơi tiếp Level: " + (_infoBus._level + 1).ToString();
+                        _pnLose.gameObject.SetActive(true);
+                        _infoBus._pnGame.gameObject.SetActive(false);
+                        bussSaveLoadData.saveGame(this, _infoTime._startTime - Time.time, timeMenu);
+                    }
                 }
-
-                StartCoroutine(reloadGame(true));
+                catch
+                {
+                }
             }
         }
         else
             _infoTime._startTime = Time.time - _infoTime._timer;
     }
 
+    public void NoViewAdmob()
+    {
+        started = true;
+        _infoTime._startTime = Time.time;
+        _point = 0;
+        txtPoint.text = _point.ToString();
+        dataGame = null;
+        winPikachu = (cols - 2) * (rows - 2);
+        if (_infoBus._level > 0)
+        {
+            _infoBus._level -= 1;
+            txtLevel.text = _bussLevel.txtLevel(_infoBus._level);
+        }
+        _pnLose.gameObject.SetActive(false);
+        StartCoroutine(reloadGame(true));
+    }
 
     public void pauseGame()
     {
@@ -379,7 +411,6 @@ public class bussGame : MonoBehaviour
         btnContinueMenu.gameObject.SetActive(true);
         btnContinue.gameObject.SetActive(false);
         btnPause.gameObject.SetActive(false);
-
     }
 
     public void continueGame()
@@ -451,7 +482,6 @@ public class bussGame : MonoBehaviour
 
     public void startGame()
     {
-
         if (_infoTime._particleSystem.isPaused)
             _infoTime._particleSystem.Play();
 
@@ -575,10 +605,12 @@ public class bussGame : MonoBehaviour
                 _gameObject = null;
             }
         }
+
         // Debug.Log(_infoCreatePikachu.Count);
         _infoCreatePikachu.Clear();
         aiIDear();
     }
+
     #region Move
 
     public void clikPikachu(int i, int j)
@@ -747,7 +779,10 @@ public class bussGame : MonoBehaviour
             _infoBus._countReload = 1;
             btnReload.GetComponentInChildren<Text>().text = _infoBus._countReload.ToString();
         }
+
         txtPoint.text = _point.ToString();
+        yield return new WaitForSeconds(0.1f);
+        bussSaveLoadData.saveGame(this, _infoTime._startTime - Time.time, timeMenu);
     }
 
     private IEnumerator WinGame()
@@ -2088,10 +2123,12 @@ public class bussGame : MonoBehaviour
             reload();
         else
         {
-            _matrix[_idearPiakchu[0]._i, _idearPiakchu[0]._j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>().GetComponent<Image>().sprite
-            = _matrix[_idearPiakchu[0]._i, _idearPiakchu[0]._j]._infoCreate._imgIdear;
-            _matrix[_idearPiakchu[1]._i, _idearPiakchu[1]._j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>().GetComponent<Image>().sprite
-            = _matrix[_idearPiakchu[1]._i, _idearPiakchu[1]._j]._infoCreate._imgIdear;
+            _matrix[_idearPiakchu[0]._i, _idearPiakchu[0]._j]._gameObject.GetComponent<RectTransform>()
+                    .GetComponent<Button>().GetComponent<Image>().sprite
+                = _matrix[_idearPiakchu[0]._i, _idearPiakchu[0]._j]._infoCreate._imgIdear;
+            _matrix[_idearPiakchu[1]._i, _idearPiakchu[1]._j]._gameObject.GetComponent<RectTransform>()
+                    .GetComponent<Button>().GetComponent<Image>().sprite
+                = _matrix[_idearPiakchu[1]._i, _idearPiakchu[1]._j]._infoCreate._imgIdear;
         }
 
 
