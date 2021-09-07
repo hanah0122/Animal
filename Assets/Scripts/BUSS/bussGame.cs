@@ -15,7 +15,7 @@ public class bussGame : MonoBehaviour
     private bool started = false;
     [SerializeField] public int cols;
     [SerializeField] public int rows;
-    [SerializeField] public float paddingPikachu = 3f;
+    [SerializeField] public float paddingPikachu = 4f;
     private int sizePikache; //so hinh se khoi tao
     private int imgPikachu;
     public int winPikachu = 0;
@@ -27,6 +27,7 @@ public class bussGame : MonoBehaviour
     Sprite[] img;
     Sprite[] imgClick;
     Sprite[] imgClick2;
+    [SerializeField] public Image PannelWinner;
     [SerializeField] public Sprite[] line;
     [SerializeField] public Button btnPause;
     [SerializeField] public Button btnContinueMenu;
@@ -434,7 +435,6 @@ public class bussGame : MonoBehaviour
 
     public void btnIdea()
     {
-        //  _infoTime._startTime = Time.time;
         if (_idearPiakchu.Count >= 1 && _infoBus._countIdear > 0)
         {
             _infoBus._countIdear -= 1;
@@ -750,6 +750,17 @@ public class bussGame : MonoBehaviour
         txtPoint.text = _point.ToString();
     }
 
+    private IEnumerator WinGame()
+    {
+        PannelWinner.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        PannelWinner.gameObject.SetActive(false);
+        dataGame = null;
+        _infoBus._level += 1;
+        txtLevel.text = _bussLevel.txtLevel(_infoBus._level);
+        StartCoroutine(reloadGame(false));
+    }
+
     private void moveSuccess(List<infoPikachu> _pikachuMoveSuccess)
     {
         winPikachu -= 2;
@@ -761,11 +772,8 @@ public class bussGame : MonoBehaviour
 
         if (winPikachu == 0)
         {
+            this.StartCoroutine(this.WinGame());
             //level 12-8 , 14-8 , 12-10,  16-8 , 14-10 , 18-8 , 16-10
-            dataGame = null;
-            _infoBus._level += 1;
-            txtLevel.text = _bussLevel.txtLevel(_infoBus._level);
-            StartCoroutine(reloadGame(false));
         }
         else
         {
@@ -2078,13 +2086,13 @@ public class bussGame : MonoBehaviour
 
         if (_idearPiakchu.Count == 0)
             reload();
-        // else
-        // {
-        //     _matrix[_idearPiakchu[0]._i, _idearPiakchu[0]._j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>().GetComponent<Image>().sprite
-        //     = _matrix[_idearPiakchu[0]._i, _idearPiakchu[0]._j]._infoCreate._imgIdear;
-        //     _matrix[_idearPiakchu[1]._i, _idearPiakchu[1]._j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>().GetComponent<Image>().sprite
-        //     = _matrix[_idearPiakchu[1]._i, _idearPiakchu[1]._j]._infoCreate._imgIdear;
-        // }
+        else
+        {
+            _matrix[_idearPiakchu[0]._i, _idearPiakchu[0]._j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>().GetComponent<Image>().sprite
+            = _matrix[_idearPiakchu[0]._i, _idearPiakchu[0]._j]._infoCreate._imgIdear;
+            _matrix[_idearPiakchu[1]._i, _idearPiakchu[1]._j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>().GetComponent<Image>().sprite
+            = _matrix[_idearPiakchu[1]._i, _idearPiakchu[1]._j]._infoCreate._imgIdear;
+        }
 
 
         bussIdear = null;
