@@ -24,6 +24,7 @@ public class AbManager : MonoBehaviour
     private void HandleOnAdClosed(object sender, EventArgs args)
     {
         this.RequestBanner();
+        GameObject.Find("Canvas").GetComponent<bussGame>().AdmobGameIntersitial();
     }
 
     private void HandleOnAdLoaded(object sender, EventArgs args)
@@ -49,7 +50,6 @@ public class AbManager : MonoBehaviour
     private void RewardedAd_OnAdLoaded(object sender, EventArgs e)
     {
         rewardedAd.Show();
-
     }
 
     // used in start func
@@ -72,7 +72,6 @@ public class AbManager : MonoBehaviour
     // first Request to load Intersitial then show Intersitial ads
     public void ShowIntersitialAds()
     {
-        Debug.Log("okkkkkk");
         string adUnitId = IntersitialAdId;
 
         if (this.interstitial != null)
@@ -97,16 +96,14 @@ public class AbManager : MonoBehaviour
         this.interstitial.OnAdClosed += HandleOnAdClosed;
         this.interstitial.OnAdLoaded += HandleOnAdLoaded;
         bannerAd.Destroy();
-
     }
-
     // load rewarded video ads
     public void LoadRewardedVideoAds()
     {
 #if UNITY_ANDROID
     	string adUnitId = RewardedVideoAdId;
 #elif UNITY_IPHONE
-        	string adUnitId = "ca-app-pub-3940256099942544/1712485313";
+        string adUnitId = "ca-app-pub-3940256099942544/1712485313";
 #else
         string adUnitId = "unexpected_platform";
 #endif

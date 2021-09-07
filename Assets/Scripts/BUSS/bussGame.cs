@@ -25,7 +25,7 @@ public class bussGame : MonoBehaviour
     public int _point;
 
     private bussData dataGame = null;
-
+    private string TypeAdmobIntersitial = "new_game";
     Sprite[] img;
     Sprite[] imgClick;
     Sprite[] imgClick2;
@@ -184,7 +184,6 @@ public class bussGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject.Find("Admob").GetComponent<AbManager>().LoadRewardedVideoAds();
         _infoTime._particleSystem.Pause();
         started = false;
 
@@ -215,74 +214,96 @@ public class bussGame : MonoBehaviour
         }
     }
 
+    public void AdmobGameIntersitial()
+    {
+        if (TypeAdmobIntersitial == "ongame_continue")
+        {
+            Audio.gameObject.GetComponent<bussSound>().UnPause();
+            started = true;
+            _infoTime._particleSystem.Play();
+            _infoBus._pnGame.gameObject.SetActive(started);
+            btnPause.gameObject.SetActive(started);
+            btnReload.interactable = true;
+            btnIdear.interactable = true;
+            btnContinueMenuTop.gameObject.SetActive(false);
+            _pnMenu.gameObject.SetActive(false);
+        }
+        if (TypeAdmobIntersitial == "load_game")
+        {
+
+            _pnMenu.gameObject.SetActive(false);
+            btnContinueMenuTop.gameObject.SetActive(false);
+            btnPause.gameObject.SetActive(true);
+            _infoTime._gameTime = 60 * timeMenu;
+            _infoTime._startTime = dataGame._startTime + Time.time;
+            startGame();
+            _pnTop.gameObject.SetActive(true);
+            started = true;
+            btnPause.gameObject.SetActive(started);
+        }
+        if (TypeAdmobIntersitial == "new_game")
+        {
+
+            GameObject.Find("Canvas").gameObject.SetActive(true);
+            Audio.gameObject.GetComponent<bussSound>().UnPause();
+            _point = _infoBus._level = 0;
+            txtPoint.text = _point.ToString();
+            txtLevel.text = "Level: " + (_infoBus._level + 1).ToString();
+            _infoBus._countIdear = _infoBus._countReload = 10;
+            btnReload.GetComponentInChildren<Text>().text = _infoBus._countReload.ToString();
+            btnIdear.GetComponentInChildren<Text>().text = _infoBus._countIdear.ToString();
+            _pnMenu.gameObject.SetActive(false);
+            btnContinueMenuTop.gameObject.SetActive(false);
+            btnPause.gameObject.SetActive(true);
+            _infoTime._slider.maxValue = _infoTime._gameTime = 60 * timeMenu;
+            _infoTime._startTime = Time.time;
+            dataGame = null;
+            LoadGame();
+            startGame();
+            _pnTop.gameObject.SetActive(true);
+            started = true;
+        }
+    }
+
     public void BtnVua()
     {
-        Audio.gameObject.GetComponent<bussSound>().UnPause();
-        _point = _infoBus._level = 0;
-        txtPoint.text = _point.ToString();
-        txtLevel.text = "Level: " + (_infoBus._level + 1).ToString();
-        _infoBus._countIdear = _infoBus._countReload = 10;
-        btnReload.GetComponentInChildren<Text>().text = _infoBus._countReload.ToString();
-        btnIdear.GetComponentInChildren<Text>().text = _infoBus._countIdear.ToString();
-        _pnMenu.gameObject.SetActive(false);
-        btnContinueMenuTop.gameObject.SetActive(false);
-        btnPause.gameObject.SetActive(true);
         timeMenu = 4;
-        _infoTime._slider.maxValue = _infoTime._gameTime = 60 * timeMenu;
-        _infoTime._startTime = Time.time;
-        dataGame = null;
-        LoadGame();
-        startGame();
-        _pnTop.gameObject.SetActive(true);
-        started = true;
+        if (Random.Range(0, 3) == 0)
+        {
+            gameObject.SetActive(false);
+            GameObject.Find("Admob").GetComponent<AbManager>().ShowIntersitialAds();
+        }
+        else
+            AdmobGameIntersitial();
     }
 
     public void BtnNhanh()
     {
-        Audio.gameObject.GetComponent<bussSound>().UnPause();
-        _point = _infoBus._level = 0;
-        txtPoint.text = _point.ToString();
-        txtLevel.text = "Level: " + (_infoBus._level + 1).ToString();
-        _infoBus._countIdear = _infoBus._countReload = 10;
-        btnReload.GetComponentInChildren<Text>().text = _infoBus._countReload.ToString();
-        btnIdear.GetComponentInChildren<Text>().text = _infoBus._countIdear.ToString();
-        _pnMenu.gameObject.SetActive(false);
-        btnContinueMenuTop.gameObject.SetActive(false);
-        btnPause.gameObject.SetActive(true);
         timeMenu = 1;
-        _infoTime._slider.maxValue = _infoTime._gameTime = 60 * timeMenu;
-        _infoTime._startTime = Time.time;
-        dataGame = null;
-        LoadGame();
-        startGame();
-        _pnTop.gameObject.SetActive(true);
-        started = true;
+        if (Random.Range(0, 3) == 0)
+        {
+            GameObject.Find("Canvas").gameObject.SetActive(false);
+            GameObject.Find("Admob").GetComponent<AbManager>().ShowIntersitialAds();
+        }
+        else
+            AdmobGameIntersitial();
     }
 
     public void BtnCham()
     {
-        Audio.gameObject.GetComponent<bussSound>().UnPause();
-        _point = _infoBus._level = 0;
-        txtPoint.text = _point.ToString();
-        txtLevel.text = "Level: " + (_infoBus._level + 1).ToString();
-        _infoBus._countIdear = _infoBus._countReload = 10;
-        btnReload.GetComponentInChildren<Text>().text = _infoBus._countReload.ToString();
-        btnIdear.GetComponentInChildren<Text>().text = _infoBus._countIdear.ToString();
-        _pnMenu.gameObject.SetActive(false);
-        btnContinueMenuTop.gameObject.SetActive(false);
-        btnPause.gameObject.SetActive(true);
         timeMenu = 5;
-        _infoTime._slider.maxValue = _infoTime._gameTime = 60 * timeMenu;
-        _infoTime._startTime = Time.time;
-        dataGame = null;
-        LoadGame();
-        startGame();
-        _pnTop.gameObject.SetActive(true);
-        started = true;
+        if (Random.Range(0, 3) == 0)
+        {
+            GameObject.Find("Canvas").gameObject.SetActive(false);
+            GameObject.Find("Admob").GetComponent<AbManager>().ShowIntersitialAds();
+        }
+        else
+            AdmobGameIntersitial();
     }
 
     public void MenuNewGame()
     {
+        TypeAdmobIntersitial = "new_game";
         if (_matrix != null)
             for (int i = 0; i < cols + 2; i++)
                 for (int j = 0; j < rows + 2; j++)
@@ -293,15 +314,14 @@ public class bussGame : MonoBehaviour
 
     public void MenuContinueGame()
     {
-        _pnMenu.gameObject.SetActive(false);
-        btnContinueMenuTop.gameObject.SetActive(false);
-        btnPause.gameObject.SetActive(true);
-        _infoTime._gameTime = 60 * timeMenu;
-        _infoTime._startTime = dataGame._startTime + Time.time;
-        startGame();
-        _pnTop.gameObject.SetActive(true);
-        started = true;
-        btnPause.gameObject.SetActive(started);
+        TypeAdmobIntersitial = "load_game";
+        if (Random.Range(0, 3) == 0)
+        {
+            GameObject.Find("Canvas").gameObject.SetActive(false);
+            GameObject.Find("Admob").GetComponent<AbManager>().ShowIntersitialAds();
+        }
+        else
+            AdmobGameIntersitial();
     }
 
 
@@ -421,15 +441,14 @@ public class bussGame : MonoBehaviour
 
     public void continueGame()
     {
-        Audio.gameObject.GetComponent<bussSound>().UnPause();
-        started = true;
-        _infoTime._particleSystem.Play();
-        _infoBus._pnGame.gameObject.SetActive(started);
-        btnPause.gameObject.SetActive(started);
-        btnReload.interactable = true;
-        btnIdear.interactable = true;
-        btnContinueMenuTop.gameObject.SetActive(false);
-        _pnMenu.gameObject.SetActive(false);
+        TypeAdmobIntersitial = "ongame_continue";
+        if (Random.Range(0, 3) == 0)
+        {
+            GameObject.Find("Canvas").gameObject.SetActive(false);
+            GameObject.Find("Admob").GetComponent<AbManager>().ShowIntersitialAds();
+        }
+        else
+            AdmobGameIntersitial();
     }
 
     public void LoadGame()
