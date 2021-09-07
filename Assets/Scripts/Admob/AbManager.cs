@@ -18,20 +18,12 @@ public class AbManager : MonoBehaviour
 
     void Start()
     {
-
         MobileAds.Initialize(InitializationStatus => { });
         this.RequestBanner();
     }
-
-
-
-
     private void HandleOnAdClosed(object sender, EventArgs args)
     {
-
         this.RequestBanner();
-
-
     }
 
     private void HandleOnAdLoaded(object sender, EventArgs args)
@@ -50,6 +42,7 @@ public class AbManager : MonoBehaviour
 
     private void RewardedAd_OnUserEarnedReward(object sender, Reward e)
     {
+        Debug.Log("RewardedAd_OnUserEarnedReward");
         // reward your user
     }
 
@@ -79,6 +72,7 @@ public class AbManager : MonoBehaviour
     // first Request to load Intersitial then show Intersitial ads
     public void ShowIntersitialAds()
     {
+        Debug.Log("okkkkkk");
         string adUnitId = IntersitialAdId;
 
         if (this.interstitial != null)

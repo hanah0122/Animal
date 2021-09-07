@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Policy;
 using AssemblyCSharp.Assets.Scripts.BUSS;
 using UnityEngine;
 using UnityEngine.UI;
@@ -90,7 +91,7 @@ public class bussGame : MonoBehaviour
 
     private void config()
     {
-        //_infoBus._level = 60;
+        _infoBus._level = 2;
         if (_infoBus._level < 5)
         {
             rows = 8;
@@ -183,6 +184,7 @@ public class bussGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject.Find("Admob").GetComponent<AbManager>().LoadRewardedVideoAds();
         _infoTime._particleSystem.Pause();
         started = false;
 
@@ -345,8 +347,6 @@ public class bussGame : MonoBehaviour
             {
                 try
                 {
-                    if (_infoTime._coutDown < 0)
-                        _infoTime._coutDown *= -1;
                     _infoTime._txtTime.text = string.Format("{0:0}:{1:00}", Mathf.FloorToInt(_infoTime._coutDown / 60),
                         Mathf.FloorToInt(_infoTime._coutDown - Mathf.FloorToInt(_infoTime._coutDown / 60) * 60));
                     _infoTime._slider.value = _infoTime._coutDown;
@@ -363,6 +363,9 @@ public class bussGame : MonoBehaviour
                     {
                         started = false;
                         txtAdmob.text = "Xem quảng cáo để chơi tiếp Level: " + (_infoBus._level + 1).ToString();
+                        btnReload.interactable = false;
+                        btnIdear.interactable = false;
+                        btnPause.interactable = false;
                         _pnLose.gameObject.SetActive(true);
                         _infoBus._pnGame.gameObject.SetActive(false);
                         bussSaveLoadData.saveGame(this, _infoTime._startTime - Time.time, timeMenu);
@@ -380,6 +383,9 @@ public class bussGame : MonoBehaviour
     public void NoViewAdmob()
     {
         started = true;
+        btnReload.interactable = true;
+        btnIdear.interactable = true;
+        btnPause.interactable = true;
         _infoTime._startTime = Time.time;
         _point = 0;
         txtPoint.text = _point.ToString();
@@ -453,6 +459,8 @@ public class bussGame : MonoBehaviour
             _infoTime._coutDown = 60 * dataGame.timeMenu + dataGame._startTime;
             try
             {
+                if (_infoTime._coutDown < 0)
+                    _infoTime._coutDown = 0;
                 _infoTime._txtTime.text = string.Format("{0:0}:{1:00}", Mathf.FloorToInt(_infoTime._coutDown / 60),
                     Mathf.FloorToInt(_infoTime._coutDown - Mathf.FloorToInt(_infoTime._coutDown / 60) * 60));
                 _infoTime._slider.maxValue = 60 * timeMenu;
