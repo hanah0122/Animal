@@ -216,6 +216,7 @@ public class bussGame : MonoBehaviour
 
     public void AdmobGameIntersitial()
     {
+        gameObject.SetActive(true);
         if (TypeAdmobIntersitial == "ongame_continue")
         {
             Audio.gameObject.GetComponent<bussSound>().UnPause();
@@ -244,7 +245,6 @@ public class bussGame : MonoBehaviour
         if (TypeAdmobIntersitial == "new_game")
         {
 
-            GameObject.Find("Canvas").gameObject.SetActive(true);
             Audio.gameObject.GetComponent<bussSound>().UnPause();
             _point = _infoBus._level = 0;
             txtPoint.text = _point.ToString();

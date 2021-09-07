@@ -15,7 +15,8 @@ public class AbManager : MonoBehaviour
 
     // Start is called before the first frame update
 
-
+    public GameObject Game;
+    public GameObject Audio;
     void Start()
     {
         MobileAds.Initialize(InitializationStatus => { });
@@ -24,11 +25,13 @@ public class AbManager : MonoBehaviour
     private void HandleOnAdClosed(object sender, EventArgs args)
     {
         this.RequestBanner();
-        GameObject.Find("Canvas").GetComponent<bussGame>().AdmobGameIntersitial();
+        this.Audio.gameObject.GetComponent<bussSound>().UnPause();
+        this.Game.gameObject.GetComponent<bussGame>().AdmobGameIntersitial();
     }
 
     private void HandleOnAdLoaded(object sender, EventArgs args)
     {
+        this.Audio.gameObject.GetComponent<bussSound>().Pause();
         interstitial.Show();
     }
     private AdRequest CreateAdRequest()
