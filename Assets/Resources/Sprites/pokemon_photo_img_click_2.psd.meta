@@ -586,90 +586,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pokemon_photo_img_click_2_3
-      rect:
-        serializedVersion: 2
-        x: 360
-        y: 1680
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0ac88df77db9e5460800000000000000
-      internalID: 7232389401468767392
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pokemon_photo_img_click_2_4
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 1680
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a180bbd5042162330800000000000000
-      internalID: 3685653412709074970
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pokemon_photo_img_click_2_5
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 1680
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 510b92ea28e39d070800000000000000
-      internalID: 8131599333182779413
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pokemon_photo_img_click_2_7
-      rect:
-        serializedVersion: 2
-        x: 840
-        y: 1680
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f14e61dbcbfda1e30800000000000000
-      internalID: 4475135181465248799
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pokemon_photo_img_click_2_8
       rect:
         serializedVersion: 2
@@ -733,27 +649,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pokemon_photo_img_click_2_11
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 1560
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ead88f8733d40ac20800000000000000
-      internalID: 3215655017410760110
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pokemon_photo_img_click_2_12
       rect:
         serializedVersion: 2
@@ -791,27 +686,6 @@ TextureImporter:
       bones: []
       spriteID: 7d702538db77f27d0800000000000000
       internalID: -2941000375813929001
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pokemon_photo_img_click_2_14
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 1560
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 28712fbff90a79ab0800000000000000
-      internalID: -5001352252184455294
       vertices: []
       indices: 
       edges: []
@@ -859,27 +733,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pokemon_photo_img_click_2_17
-      rect:
-        serializedVersion: 2
-        x: 840
-        y: 1560
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 65be4245b6b193460800000000000000
-      internalID: 7221833625252457302
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pokemon_photo_img_click_2_19
       rect:
         serializedVersion: 2
@@ -922,27 +775,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pokemon_photo_img_click_2_21
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 1440
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fdbe5130d029dbeb0800000000000000
-      internalID: -4702441851320931361
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pokemon_photo_img_click_2_22
       rect:
         serializedVersion: 2
@@ -959,27 +791,6 @@ TextureImporter:
       bones: []
       spriteID: 0df0d13a96d7181e0800000000000000
       internalID: -2197337250518462512
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pokemon_photo_img_click_2_24
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 1440
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2b151f44436fa4a80800000000000000
-      internalID: -8481696243843509838
       vertices: []
       indices: 
       edges: []
@@ -1043,27 +854,6 @@ TextureImporter:
       bones: []
       spriteID: 545e521d41e6711b0800000000000000
       internalID: -5685954968844638907
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pokemon_photo_img_click_2_29
-      rect:
-        serializedVersion: 2
-        x: 1080
-        y: 1440
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7edcd1387246ae9b0800000000000000
-      internalID: -5050113911276319257
       vertices: []
       indices: 
       edges: []
@@ -1237,27 +1027,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pokemon_photo_img_click_2_42
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 1200
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f1d6b74a66ca850a0800000000000000
-      internalID: -6892569672844350177
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pokemon_photo_img_click_2_44
       rect:
         serializedVersion: 2
@@ -1274,48 +1043,6 @@ TextureImporter:
       bones: []
       spriteID: b7dfda4d6056c9a50800000000000000
       internalID: 6529204639792758139
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pokemon_photo_img_click_2_45
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 1200
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3f7e6ef1ceb7a4750800000000000000
-      internalID: 6289976083654043635
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pokemon_photo_img_click_2_46
-      rect:
-        serializedVersion: 2
-        x: 720
-        y: 1200
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ca4208650c9af2b30800000000000000
-      internalID: 4264814015693202604
       vertices: []
       indices: 
       edges: []
@@ -1358,27 +1085,6 @@ TextureImporter:
       bones: []
       spriteID: b12877df8f7d3b3f0800000000000000
       internalID: -886127237257526757
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pokemon_photo_img_click_2_49
-      rect:
-        serializedVersion: 2
-        x: 1080
-        y: 1200
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 77d92df1bd5eebeb0800000000000000
-      internalID: -4702068231633724041
       vertices: []
       indices: 
       edges: []
@@ -1505,27 +1211,6 @@ TextureImporter:
       bones: []
       spriteID: f0481affb297a9330800000000000000
       internalID: 3718417672227095567
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pokemon_photo_img_click_2_59
-      rect:
-        serializedVersion: 2
-        x: 1080
-        y: 1080
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5e491b5873103e2c0800000000000000
-      internalID: -4403674672660376347
       vertices: []
       indices: 
       edges: []
@@ -1673,27 +1358,6 @@ TextureImporter:
       bones: []
       spriteID: c7ef694dcd2870cd0800000000000000
       internalID: -2591959175557349764
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pokemon_photo_img_click_2_76
-      rect:
-        serializedVersion: 2
-        x: 720
-        y: 840
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f3e4ff7f886a766c0800000000000000
-      internalID: -4150165424392155585
       vertices: []
       indices: 
       edges: []
@@ -1993,27 +1657,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pokemon_photo_img_click_2_100
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 480
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bf806782f9232b9d0800000000000000
-      internalID: -2760087962464679685
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pokemon_photo_img_click_2_101
       rect:
         serializedVersion: 2
@@ -2308,27 +1951,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pokemon_photo_img_click_2_116
-      rect:
-        serializedVersion: 2
-        x: 720
-        y: 360
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fac6e7d4cbad1b3d0800000000000000
-      internalID: -3192530158540133201
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pokemon_photo_img_click_2_117
       rect:
         serializedVersion: 2
@@ -2413,27 +2035,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pokemon_photo_img_click_2_122
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 240
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aecf50c4e8d041610800000000000000
-      internalID: 1590911473180605674
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pokemon_photo_img_click_2_123
       rect:
         serializedVersion: 2
@@ -2450,27 +2051,6 @@ TextureImporter:
       bones: []
       spriteID: 74fe8f51e5f212b20800000000000000
       internalID: 3107817299004419911
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pokemon_photo_img_click_2_124
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 240
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: acd5e5a42eea73010800000000000000
-      internalID: 1168594915259473354
       vertices: []
       indices: 
       edges: []
@@ -2702,27 +2282,6 @@ TextureImporter:
       bones: []
       spriteID: 51ae314ea095c0af0800000000000000
       internalID: -428869961195984363
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pokemon_photo_img_click_2_139
-      rect:
-        serializedVersion: 2
-        x: 1080
-        y: 120
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 44a41b7111ad81570800000000000000
-      internalID: 8437733668825418308
       vertices: []
       indices: 
       edges: []

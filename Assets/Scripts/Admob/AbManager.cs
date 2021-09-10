@@ -14,24 +14,25 @@ public class AbManager : MonoBehaviour
     private string RewardedVideoAdId = "ca-app-pub-3940256099942544/5224354917";
 
     // Start is called before the first frame update
-
-    public GameObject Game;
-    public GameObject Audio;
+    public bool RunAdmob = false;
     void Start()
     {
         MobileAds.Initialize(InitializationStatus => { });
         this.RequestBanner();
     }
+
+    public bool getRunAdmob()
+    {
+        return this.RunAdmob;
+    }
+
     private void HandleOnAdClosed(object sender, EventArgs args)
     {
         this.RequestBanner();
-        this.Audio.gameObject.GetComponent<bussSound>().UnPause();
-        this.Game.gameObject.GetComponent<bussGame>().AdmobGameIntersitial();
     }
 
     private void HandleOnAdLoaded(object sender, EventArgs args)
     {
-        this.Audio.gameObject.GetComponent<bussSound>().Pause();
         interstitial.Show();
     }
     private AdRequest CreateAdRequest()

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Policy;
+//using System.Security.Policy;
 using AssemblyCSharp.Assets.Scripts.BUSS;
 using UnityEngine;
 using UnityEngine.UI;
@@ -44,7 +44,9 @@ public class bussGame : MonoBehaviour
     [SerializeField] Text txtLevel;
     [SerializeField] Text txtAdmob;
     [SerializeField] Text txtTextContinue;
-    [SerializeField] Image _pnLose;
+    [SerializeField] Image _pnLoseHasAdmob;
+    [SerializeField] Image _pnLoseNoAdmob;
+    private Image _pnLose;
     [SerializeField] Image _pnGame;
     [SerializeField] Image _pnLoadGame;
     [SerializeField] Image _pnNewGame;
@@ -70,8 +72,8 @@ public class bussGame : MonoBehaviour
 
     private void Awake()
     {
-        img = Resources.LoadAll<Sprite>("Sprites/pokemon_photo_img_click") as Sprite[];
-        imgClick = Resources.LoadAll<Sprite>("Sprites/pokemon_photo_img") as Sprite[];
+        imgClick = Resources.LoadAll<Sprite>("Sprites/pokemon_photo_img_click") as Sprite[];
+        img = Resources.LoadAll<Sprite>("Sprites/pokemon_photo_img") as Sprite[];
         imgClick2 = Resources.LoadAll<Sprite>("Sprites/pokemon_photo_img_click_2") as Sprite[];
         //bussTimer
         _infoTime._particleSystem = ProgressBarParticles;
@@ -91,7 +93,8 @@ public class bussGame : MonoBehaviour
 
     private void config()
     {
-        _infoBus._level = 2;
+
+        //_infoBus._level = 60;
         if (_infoBus._level < 5)
         {
             rows = 8;
@@ -184,6 +187,7 @@ public class bussGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _pnLose = GameObject.Find("Admob").GetComponent<AbManager>().getRunAdmob() ? _pnLoseHasAdmob : _pnLoseNoAdmob;
         _infoTime._particleSystem.Pause();
         started = false;
 
@@ -219,7 +223,7 @@ public class bussGame : MonoBehaviour
         gameObject.SetActive(true);
         if (TypeAdmobIntersitial == "ongame_continue")
         {
-            Audio.gameObject.GetComponent<bussSound>().UnPause();
+            //Audio.gameObject.GetComponent<bussSound>().UnPause();
             started = true;
             _infoTime._particleSystem.Play();
             _infoBus._pnGame.gameObject.SetActive(started);
@@ -245,7 +249,7 @@ public class bussGame : MonoBehaviour
         if (TypeAdmobIntersitial == "new_game")
         {
 
-            Audio.gameObject.GetComponent<bussSound>().UnPause();
+            //Audio.gameObject.GetComponent<bussSound>().UnPause();
             _point = _infoBus._level = 0;
             txtPoint.text = _point.ToString();
             txtLevel.text = "Level: " + (_infoBus._level + 1).ToString();
@@ -267,8 +271,9 @@ public class bussGame : MonoBehaviour
 
     public void BtnVua()
     {
+        Audio.GetComponent<bussSound>().SoundButton();
         timeMenu = 4;
-        if (Random.Range(0, 3) == 0)
+        if (GameObject.Find("Admob").GetComponent<AbManager>().getRunAdmob() && Random.Range(0, 3) == 0)
         {
             gameObject.SetActive(false);
             GameObject.Find("Admob").GetComponent<AbManager>().ShowIntersitialAds();
@@ -279,8 +284,9 @@ public class bussGame : MonoBehaviour
 
     public void BtnNhanh()
     {
-        timeMenu = 1;
-        if (Random.Range(0, 3) == 0)
+        Audio.GetComponent<bussSound>().SoundButton();
+        timeMenu = 3;
+        if (GameObject.Find("Admob").GetComponent<AbManager>().getRunAdmob() && Random.Range(0, 3) == 0)
         {
             GameObject.Find("Canvas").gameObject.SetActive(false);
             GameObject.Find("Admob").GetComponent<AbManager>().ShowIntersitialAds();
@@ -291,8 +297,9 @@ public class bussGame : MonoBehaviour
 
     public void BtnCham()
     {
+        Audio.GetComponent<bussSound>().SoundButton();
         timeMenu = 5;
-        if (Random.Range(0, 3) == 0)
+        if (GameObject.Find("Admob").GetComponent<AbManager>().getRunAdmob() && Random.Range(0, 3) == 0)
         {
             GameObject.Find("Canvas").gameObject.SetActive(false);
             GameObject.Find("Admob").GetComponent<AbManager>().ShowIntersitialAds();
@@ -303,6 +310,7 @@ public class bussGame : MonoBehaviour
 
     public void MenuNewGame()
     {
+        Audio.GetComponent<bussSound>().SoundButton();
         TypeAdmobIntersitial = "new_game";
         if (_matrix != null)
             for (int i = 0; i < cols + 2; i++)
@@ -314,8 +322,9 @@ public class bussGame : MonoBehaviour
 
     public void MenuContinueGame()
     {
+        Audio.GetComponent<bussSound>().SoundButton();
         TypeAdmobIntersitial = "load_game";
-        if (Random.Range(0, 3) == 0)
+        if (GameObject.Find("Admob").GetComponent<AbManager>().getRunAdmob() && Random.Range(0, 3) == 0)
         {
             GameObject.Find("Canvas").gameObject.SetActive(false);
             GameObject.Find("Admob").GetComponent<AbManager>().ShowIntersitialAds();
@@ -347,7 +356,7 @@ public class bussGame : MonoBehaviour
                 dataGame = bussSaveLoadData.loadGame();
                 LoadGame();
                 MenuContinueGame();
-                Audio.gameObject.GetComponent<bussSound>().UnPause();
+                //Audio.gameObject.GetComponent<bussSound>().UnPause();
             }
         }
     }
@@ -382,13 +391,21 @@ public class bussGame : MonoBehaviour
                     if (_infoBus._pnGame && _pnLose)
                     {
                         started = false;
-                        txtAdmob.text = "Xem quảng cáo để chơi tiếp Level: " + (_infoBus._level + 1).ToString();
-                        btnReload.interactable = false;
-                        btnIdear.interactable = false;
-                        btnPause.interactable = false;
+                        if (GameObject.Find("Admob").GetComponent<AbManager>().getRunAdmob())
+                        {
+
+                            txtAdmob.text = "Xem quảng cáo để chơi tiếp Level: " + (_infoBus._level + 1).ToString();
+                            btnReload.interactable = false;
+                            btnIdear.interactable = false;
+                            btnPause.interactable = false;
+                            _infoBus._pnGame.gameObject.SetActive(false);
+                            bussSaveLoadData.saveGame(this, _infoTime._startTime - Time.time, timeMenu);
+                        }
+                        else
+                            NoViewAdmob();
+                        Audio.GetComponent<bussSound>().SoundGameLose();
                         _pnLose.gameObject.SetActive(true);
-                        _infoBus._pnGame.gameObject.SetActive(false);
-                        bussSaveLoadData.saveGame(this, _infoTime._startTime - Time.time, timeMenu);
+                        _pnGame.gameObject.SetActive(false);
                     }
                 }
                 catch
@@ -416,13 +433,25 @@ public class bussGame : MonoBehaviour
             _infoBus._level -= 1;
             txtLevel.text = _bussLevel.txtLevel(_infoBus._level);
         }
-        _pnLose.gameObject.SetActive(false);
-        StartCoroutine(reloadGame(true));
+        if (GameObject.Find("Admob").GetComponent<AbManager>().getRunAdmob())
+        {
+            _pnLose.gameObject.SetActive(false);
+            StartCoroutine(reloadGame(true));
+        }
+        else
+            this.StartCoroutine(this.LoadGameNoHasAdmob());
     }
-
+    private IEnumerator LoadGameNoHasAdmob()
+    {
+        yield return new WaitForSeconds(1f);
+        dataGame = null;
+        StartCoroutine(reloadGame(false));
+        _pnLose.gameObject.SetActive(false);
+    }
     public void pauseGame()
     {
-        Audio.gameObject.GetComponent<bussSound>().Pause();
+        Audio.GetComponent<bussSound>().SoundButton();
+        //Audio.gameObject.GetComponent<bussSound>().Pause();
         //bussSaveLoadData.saveGame(this, _infoTime._startTime - Time.time, timeMenu);
         started = false;
         _infoTime._particleSystem.Pause();
@@ -442,7 +471,7 @@ public class bussGame : MonoBehaviour
     public void continueGame()
     {
         TypeAdmobIntersitial = "ongame_continue";
-        if (Random.Range(0, 3) == 0)
+        if (GameObject.Find("Admob").GetComponent<AbManager>().getRunAdmob() && Random.Range(0, 3) == 0)
         {
             GameObject.Find("Canvas").gameObject.SetActive(false);
             GameObject.Find("Admob").GetComponent<AbManager>().ShowIntersitialAds();
@@ -490,6 +519,11 @@ public class bussGame : MonoBehaviour
             }
         }
     }
+    private IEnumerator SoundIdeaButton()
+    {
+        yield return new WaitForSeconds(0.3f);
+        Audio.GetComponent<bussSound>().SoundIdea();
+    }
 
     public void btnIdea()
     {
@@ -503,6 +537,7 @@ public class bussGame : MonoBehaviour
             _matrix[_idearPiakchu[1]._i, _idearPiakchu[1]._j]._gameObject.GetComponent<RectTransform>()
                     .GetComponent<Button>().GetComponent<Image>().sprite =
                 _matrix[_idearPiakchu[1]._i, _idearPiakchu[1]._j]._infoCreate._imgIdear;
+            this.StartCoroutine(this.SoundIdeaButton());
         }
     }
 
@@ -636,8 +671,13 @@ public class bussGame : MonoBehaviour
         // Debug.Log(_infoCreatePikachu.Count);
         _infoCreatePikachu.Clear();
         aiIDear();
+        this.StartCoroutine(this.SoundStartGame());
     }
-
+    private IEnumerator SoundStartGame()
+    {
+        yield return new WaitForSeconds(1f);
+        Audio.GetComponent<bussSound>().SoungBegin();
+    }
     #region Move
 
     public void clikPikachu(int i, int j)
@@ -761,6 +801,7 @@ public class bussGame : MonoBehaviour
                         }
                         else
                         {
+                            Audio.GetComponent<bussSound>().SoundMoveFlase();
                             _matrix[_checkPiakchu[0]._i, _checkPiakchu[0]._j]._empty =
                                 _matrix[_checkPiakchu[1]._i, _checkPiakchu[1]._j]._empty = false;
 
@@ -774,6 +815,7 @@ public class bussGame : MonoBehaviour
                 }
                 else
                 {
+                    Audio.GetComponent<bussSound>().SoundMoveFlase();
                     List<infoPikachu> _checkPiakchuHidden = new List<infoPikachu>();
                     _checkPiakchuHidden.Add(_matrix[_checkPiakchu[0]._i, _checkPiakchu[0]._j]);
                     _checkPiakchuHidden.Add(_matrix[_checkPiakchu[1]._i, _checkPiakchu[1]._j]);
@@ -814,6 +856,7 @@ public class bussGame : MonoBehaviour
 
     private IEnumerator WinGame()
     {
+        Audio.GetComponent<bussSound>().SoundGameWin();
         PannelWinner.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
         PannelWinner.gameObject.SetActive(false);
@@ -828,17 +871,11 @@ public class bussGame : MonoBehaviour
         winPikachu -= 2;
         _point += 2;
         txtPoint.text = _point.ToString();
-
-
-        //if (winPikachu == ((cols - 2) * (rows - 2) - 6) )
-
         if (winPikachu == 0)
-        {
             this.StartCoroutine(this.WinGame());
-            //level 12-8 , 14-8 , 12-10,  16-8 , 14-10 , 18-8 , 16-10
-        }
         else
         {
+            Audio.GetComponent<bussSound>().SoundMoveTrue();
             if (_infoBus._level > 15)
             {
                 if (Random.Range(0, 10) < 8)
@@ -2046,10 +2083,17 @@ public class bussGame : MonoBehaviour
         }
     }
 
+    private IEnumerator SoundReloadButton()
+    {
+        yield return new WaitForSeconds(0.3f);
+        Audio.GetComponent<bussSound>().SoundReload();
+    }
     public void reLoadRamdom()
     {
+        //Audio.GetComponent<bussSound>().SoundButton();
         if (_infoBus._countReload > 0)
         {
+            this.StartCoroutine(this.SoundReloadButton());
             btnReload.interactable = false;
             if (_checkPiakchu.Count > 0)
             {
@@ -2148,15 +2192,15 @@ public class bussGame : MonoBehaviour
 
         if (_idearPiakchu.Count == 0)
             reload();
-        else
-        {
-            _matrix[_idearPiakchu[0]._i, _idearPiakchu[0]._j]._gameObject.GetComponent<RectTransform>()
-                    .GetComponent<Button>().GetComponent<Image>().sprite
-                = _matrix[_idearPiakchu[0]._i, _idearPiakchu[0]._j]._infoCreate._imgIdear;
-            _matrix[_idearPiakchu[1]._i, _idearPiakchu[1]._j]._gameObject.GetComponent<RectTransform>()
-                    .GetComponent<Button>().GetComponent<Image>().sprite
-                = _matrix[_idearPiakchu[1]._i, _idearPiakchu[1]._j]._infoCreate._imgIdear;
-        }
+        //else
+        //{
+        //    _matrix[_idearPiakchu[0]._i, _idearPiakchu[0]._j]._gameObject.GetComponent<RectTransform>()
+        //            .GetComponent<Button>().GetComponent<Image>().sprite
+        //        = _matrix[_idearPiakchu[0]._i, _idearPiakchu[0]._j]._infoCreate._imgIdear;
+        //    _matrix[_idearPiakchu[1]._i, _idearPiakchu[1]._j]._gameObject.GetComponent<RectTransform>()
+        //            .GetComponent<Button>().GetComponent<Image>().sprite
+        //        = _matrix[_idearPiakchu[1]._i, _idearPiakchu[1]._j]._infoCreate._imgIdear;
+        //}
 
 
         bussIdear = null;

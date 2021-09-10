@@ -5,12 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: Assets/Scenes/Menu.unity
-    guid: 5cedc1ddc817ed8488392a4c0bbd91c8
   - enabled: 1
     path: Assets/Scenes/AnimalConnect.unity
     guid: 705a69d77283db240b9bafaa0eaf6b49
