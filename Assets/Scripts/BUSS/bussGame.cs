@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Policy;
+//using System.Security.Policy;
 using AssemblyCSharp.Assets.Scripts.BUSS;
 using UnityEngine;
 using UnityEngine.UI;
@@ -168,8 +168,8 @@ public class bussGame : MonoBehaviour
             {
                 RandomImage = Random.Range(0, imgTmp.Count);
                 _infoCreatePikachu.Add(
-                    new infoCreatePikachu(imgPikachu, img[imgTmp[RandomImage]],
-                        imgClick2[imgTmp[RandomImage]], imgClick[imgTmp[RandomImage]], imgTmp[RandomImage]));
+                        new infoCreatePikachu(imgPikachu, img[imgTmp[RandomImage]],
+                            imgClick2[imgTmp[RandomImage]], imgClick[imgTmp[RandomImage]], imgTmp[RandomImage]));
 
                 imgTmp.RemoveAt(RandomImage);
             }
@@ -368,7 +368,7 @@ public class bussGame : MonoBehaviour
                 try
                 {
                     _infoTime._txtTime.text = string.Format("{0:0}:{1:00}", Mathf.FloorToInt(_infoTime._coutDown / 60),
-                        Mathf.FloorToInt(_infoTime._coutDown - Mathf.FloorToInt(_infoTime._coutDown / 60) * 60));
+                            Mathf.FloorToInt(_infoTime._coutDown - Mathf.FloorToInt(_infoTime._coutDown / 60) * 60));
                     _infoTime._slider.value = _infoTime._coutDown;
                 }
                 catch
@@ -481,7 +481,7 @@ public class bussGame : MonoBehaviour
                 if (_infoTime._coutDown < 0)
                     _infoTime._coutDown = 0;
                 _infoTime._txtTime.text = string.Format("{0:0}:{1:00}", Mathf.FloorToInt(_infoTime._coutDown / 60),
-                    Mathf.FloorToInt(_infoTime._coutDown - Mathf.FloorToInt(_infoTime._coutDown / 60) * 60));
+                        Mathf.FloorToInt(_infoTime._coutDown - Mathf.FloorToInt(_infoTime._coutDown / 60) * 60));
                 _infoTime._slider.maxValue = 60 * timeMenu;
                 _infoTime._slider.value = (int)_infoTime._coutDown;
             }
@@ -498,10 +498,10 @@ public class bussGame : MonoBehaviour
             _infoBus._countIdear -= 1;
             btnIdear.GetComponentInChildren<Text>().text = _infoBus._countIdear.ToString();
             _matrix[_idearPiakchu[0]._i, _idearPiakchu[0]._j]._gameObject.GetComponent<RectTransform>()
-                    .GetComponent<Button>().GetComponent<Image>().sprite =
+                .GetComponent<Button>().GetComponent<Image>().sprite =
                 _matrix[_idearPiakchu[0]._i, _idearPiakchu[0]._j]._infoCreate._imgIdear;
             _matrix[_idearPiakchu[1]._i, _idearPiakchu[1]._j]._gameObject.GetComponent<RectTransform>()
-                    .GetComponent<Button>().GetComponent<Image>().sprite =
+                .GetComponent<Button>().GetComponent<Image>().sprite =
                 _matrix[_idearPiakchu[1]._i, _idearPiakchu[1]._j]._infoCreate._imgIdear;
         }
     }
@@ -535,17 +535,17 @@ public class bussGame : MonoBehaviour
 
                     rectTransform.sizeDelta =
                         new Vector2(
-                            (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols) -
-                                     paddingPikachu),
-                            (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows) -
-                                     paddingPikachu));
+                                (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols) -
+                                    paddingPikachu),
+                                (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows) -
+                                    paddingPikachu));
                     rectTransform.transform.position = new Vector2(
-                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols / 2) +
-                                 (float)((float)_infoBus._pnGame.rectTransform.rect.width / cols * i -
-                                          (float)(_infoBus._pnGame.rectTransform.rect.width / cols)) + paddingPikachu),
-                        (float)((float)-(float)(_infoBus._pnGame.rectTransform.rect.height / rows / 2) -
-                                 (float)((float)(_infoBus._pnGame.rectTransform.rect.height / rows * j) -
-                                          (float)_infoBus._pnGame.rectTransform.rect.height / rows)) + paddingPikachu);
+                            (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols / 2) +
+                                (float)((float)_infoBus._pnGame.rectTransform.rect.width / cols * i -
+                                    (float)(_infoBus._pnGame.rectTransform.rect.width / cols)) + paddingPikachu),
+                            (float)((float)-(float)(_infoBus._pnGame.rectTransform.rect.height / rows / 2) -
+                                (float)((float)(_infoBus._pnGame.rectTransform.rect.height / rows * j) -
+                                    (float)_infoBus._pnGame.rectTransform.rect.height / rows)) + paddingPikachu);
                     _gameObject.transform.SetParent(_infoBus._pnGame.transform, false);
                     rectTransform.gameObject.AddComponent<Button>();
 
@@ -562,8 +562,8 @@ public class bussGame : MonoBehaviour
                     int y = j;
 
                     _matrix[x, y] = new infoPikachu(x, y, _infoCreatePikachu[_flag],
-                        dataGame == null ? false : dataGame._matrix[x, y].empty, _gameObject,
-                        _infoCreatePikachu[_flag]._number);
+                            dataGame == null ? false : dataGame._matrix[x, y].empty, _gameObject,
+                            _infoCreatePikachu[_flag]._number);
                     _gameObject.SetActive(dataGame == null ? true : !dataGame._matrix[x, y].empty);
 
                     rectTransform.GetComponent<Button>().onClick.AddListener(delegate () { clikPikachu(x, y); });
@@ -585,19 +585,19 @@ public class bussGame : MonoBehaviour
                         rectTransform.anchorMax = new Vector2(0, 1);
 
                         rectTransform.sizeDelta = new Vector2(
-                            (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols) -
-                                     paddingPikachu),
-                            (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows) -
-                                     paddingPikachu));
+                                (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols) -
+                                    paddingPikachu),
+                                (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows) -
+                                    paddingPikachu));
                         rectTransform.transform.position = new Vector2(
-                            (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols / 2) +
-                                     (float)((float)_infoBus._pnGame.rectTransform.rect.width / cols * i -
-                                              (float)(_infoBus._pnGame.rectTransform.rect.width / cols)) +
-                                     paddingPikachu),
-                            (float)((float)-(float)(_infoBus._pnGame.rectTransform.rect.height / rows / 2) -
-                                     (float)((float)(_infoBus._pnGame.rectTransform.rect.height / rows * j) -
-                                              (float)_infoBus._pnGame.rectTransform.rect.height / rows)) +
-                            paddingPikachu);
+                                (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols / 2) +
+                                    (float)((float)_infoBus._pnGame.rectTransform.rect.width / cols * i -
+                                        (float)(_infoBus._pnGame.rectTransform.rect.width / cols)) +
+                                    paddingPikachu),
+                                (float)((float)-(float)(_infoBus._pnGame.rectTransform.rect.height / rows / 2) -
+                                    (float)((float)(_infoBus._pnGame.rectTransform.rect.height / rows * j) -
+                                        (float)_infoBus._pnGame.rectTransform.rect.height / rows)) +
+                                paddingPikachu);
                         _gameObject.transform.SetParent(_infoBus._pnGame.transform, false);
                         rectTransform.gameObject.AddComponent<Button>();
                         rectTransform.GetComponent<Button>().gameObject.AddComponent<Image>().sprite = line[0];
@@ -654,7 +654,7 @@ public class bussGame : MonoBehaviour
                 _checkPiakchu.Add(_matrix[i, j]);
 
                 if (_checkPiakchu[0]._infoCreate._img.ToString().ToLower() ==
-                    _checkPiakchu[1]._infoCreate._img.ToString().ToLower())
+                        _checkPiakchu[1]._infoCreate._img.ToString().ToLower())
                 {
                     _checkPiakchu[0]._empty = true;
                     _checkPiakchu[1]._empty = true;
@@ -900,8 +900,8 @@ public class bussGame : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
 
         if ((Math.Max(_pikachuMoveSuccess[0]._j, _pikachuMoveSuccess[1]._j) -
-             Math.Min(_pikachuMoveSuccess[0]._j, _pikachuMoveSuccess[1]._j)) != 1 &&
-            _pikachuMoveSuccess[0]._i != _pikachuMoveSuccess[1]._i)
+                    Math.Min(_pikachuMoveSuccess[0]._j, _pikachuMoveSuccess[1]._j)) != 1 &&
+                _pikachuMoveSuccess[0]._i != _pikachuMoveSuccess[1]._i)
         {
             hoanviDown(0, _pikachuMoveSuccess);
             hoanviDown(1, _pikachuMoveSuccess);
@@ -947,8 +947,8 @@ public class bussGame : MonoBehaviour
                 _matrix[i, j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>().GetComponent<Image>()
                     .sprite = _matrix[i, j - 1]._infoCreate._img;
                 _matrix[i, j]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols) - paddingPikachu),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows) - paddingPikachu));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols) - paddingPikachu),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows) - paddingPikachu));
 
 
                 _matrix[i, j - 1]._empty = empty;
@@ -958,8 +958,8 @@ public class bussGame : MonoBehaviour
                 _matrix[i, j - 1]._gameObject.GetComponent<RectTransform>().GetComponent<Button>().GetComponent<Image>()
                     .sprite = _matrix[i, j]._infoCreate._img;
                 _matrix[i, j - 1]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols) - paddingPikachu),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows) - paddingPikachu));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols) - paddingPikachu),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows) - paddingPikachu));
             }
             else
             {
@@ -976,8 +976,8 @@ public class bussGame : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
 
         if ((Math.Max(_pikachuMoveSuccess[0]._j, _pikachuMoveSuccess[1]._j) -
-             Math.Min(_pikachuMoveSuccess[0]._j, _pikachuMoveSuccess[1]._j)) != 1 &&
-            _pikachuMoveSuccess[0]._i != _pikachuMoveSuccess[1]._i)
+                    Math.Min(_pikachuMoveSuccess[0]._j, _pikachuMoveSuccess[1]._j)) != 1 &&
+                _pikachuMoveSuccess[0]._i != _pikachuMoveSuccess[1]._i)
         {
             hoanViMoveUp(0, _pikachuMoveSuccess);
             hoanViMoveUp(1, _pikachuMoveSuccess);
@@ -1023,8 +1023,8 @@ public class bussGame : MonoBehaviour
                 _matrix[i, j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>().GetComponent<Image>()
                     .sprite = _matrix[i, j + 1]._infoCreate._img;
                 _matrix[i, j]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols) - paddingPikachu),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows) - paddingPikachu));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols) - paddingPikachu),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows) - paddingPikachu));
 
 
                 _matrix[i, j + 1]._empty = empty;
@@ -1035,8 +1035,8 @@ public class bussGame : MonoBehaviour
                 _matrix[i, j + 1]._gameObject.GetComponent<RectTransform>().GetComponent<Button>().GetComponent<Image>()
                     .sprite = _matrix[i, j]._infoCreate._img;
                 _matrix[i, j + 1]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols) - paddingPikachu),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows) - paddingPikachu));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols) - paddingPikachu),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows) - paddingPikachu));
             }
             else
             {
@@ -1053,8 +1053,8 @@ public class bussGame : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
 
         if ((Math.Max(_pikachuMoveSuccess[0]._i, _pikachuMoveSuccess[1]._i) -
-             Math.Min(_pikachuMoveSuccess[0]._i, _pikachuMoveSuccess[1]._i)) != 1 &&
-            _pikachuMoveSuccess[0]._j != _pikachuMoveSuccess[1]._j)
+                    Math.Min(_pikachuMoveSuccess[0]._i, _pikachuMoveSuccess[1]._i)) != 1 &&
+                _pikachuMoveSuccess[0]._j != _pikachuMoveSuccess[1]._j)
         {
             hoanViMoveRight(0, _pikachuMoveSuccess);
             hoanViMoveRight(1, _pikachuMoveSuccess);
@@ -1102,8 +1102,8 @@ public class bussGame : MonoBehaviour
                     .sprite = _matrix[i + 1, j]._infoCreate._img;
 
                 _matrix[i, j]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols) - paddingPikachu),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows) - paddingPikachu));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols) - paddingPikachu),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows) - paddingPikachu));
 
                 _matrix[i + 1, j]._empty = empty;
                 _matrix[i + 1, j]._numberImg = imgNunber;
@@ -1113,8 +1113,8 @@ public class bussGame : MonoBehaviour
                 _matrix[i + 1, j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>().GetComponent<Image>()
                     .sprite = _matrix[i, j]._infoCreate._img;
                 _matrix[i + 1, j]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols) - paddingPikachu),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows) - paddingPikachu));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols) - paddingPikachu),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows) - paddingPikachu));
             }
             else
             {
@@ -1131,8 +1131,8 @@ public class bussGame : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
 
         if ((Math.Max(_pikachuMoveSuccess[0]._i, _pikachuMoveSuccess[1]._i) -
-             Math.Min(_pikachuMoveSuccess[0]._i, _pikachuMoveSuccess[1]._i)) != 1 &&
-            _pikachuMoveSuccess[0]._j != _pikachuMoveSuccess[1]._j)
+                    Math.Min(_pikachuMoveSuccess[0]._i, _pikachuMoveSuccess[1]._i)) != 1 &&
+                _pikachuMoveSuccess[0]._j != _pikachuMoveSuccess[1]._j)
         {
             hoanViMoveLeft(0, _pikachuMoveSuccess);
             hoanViMoveLeft(1, _pikachuMoveSuccess);
@@ -1180,8 +1180,8 @@ public class bussGame : MonoBehaviour
                     .sprite = _matrix[i - 1, j]._infoCreate._img;
 
                 _matrix[i, j]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols) - paddingPikachu),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows) - paddingPikachu));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols) - paddingPikachu),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows) - paddingPikachu));
 
                 _matrix[i - 1, j]._empty = empty;
                 _matrix[i - 1, j]._numberImg = imgNunber;
@@ -1191,8 +1191,8 @@ public class bussGame : MonoBehaviour
                 _matrix[i - 1, j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>().GetComponent<Image>()
                     .sprite = _matrix[i, j]._infoCreate._img;
                 _matrix[i - 1, j]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols) - paddingPikachu),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows) - paddingPikachu));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols) - paddingPikachu),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows) - paddingPikachu));
             }
             else
             {
@@ -1213,8 +1213,8 @@ public class bussGame : MonoBehaviour
             {
                 infoPikachus[i]._gameObject.SetActive(true);
                 infoPikachus[i]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
                 infoPikachus[i]._gameObject.GetComponent<RectTransform>().GetComponent<Button>().GetComponent<Image>()
                     .sprite = this.line[line];
             }
@@ -1333,7 +1333,7 @@ public class bussGame : MonoBehaviour
         {
             // check three line
             if (checkLineX(pMinY._j, y, pMinY._i) && checkLineY(pMinY._i, pMaxY._i, y) &&
-                checkLineX(y, pMaxY._j, pMaxY._i))
+                    checkLineX(y, pMaxY._j, pMaxY._i))
             {
                 //Debug.Log("Rect x");
                 //Debug.Log("(" + pMinY._i + "," + pMinY._j + ") -> ("
@@ -1346,10 +1346,10 @@ public class bussGame : MonoBehaviour
                 listMove.Add(_matrix[pMaxY._i, y]);
                 listMove.Add(_matrix[pMaxY._i, pMaxY._j]);
                 _matrix[p1._i, p1._j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
-                        .GetComponent<Image>().sprite =
+                    .GetComponent<Image>().sprite =
                     _matrix[p1._i, p1._j]._infoCreate._img;
                 _matrix[p2._i, p2._j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
-                        .GetComponent<Image>().sprite =
+                    .GetComponent<Image>().sprite =
                     _matrix[p2._i, p2._j]._infoCreate._img;
                 StartCoroutine(lineRectX(listMove));
                 pMinY = pMinY = p1 = p2 = null;
@@ -1370,8 +1370,8 @@ public class bussGame : MonoBehaviour
         {
             _matrix[listMove[0]._i, j]._gameObject.SetActive(true);
             _matrix[listMove[0]._i, j]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
-                (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
+                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
+                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
 
             _matrix[listMove[0]._i, j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
                 .GetComponent<Image>().sprite = line[2];
@@ -1390,8 +1390,8 @@ public class bussGame : MonoBehaviour
             {
                 _matrix[x, listMove[1]._j]._gameObject.SetActive(true);
                 _matrix[x, listMove[1]._j]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
                 _matrix[x, listMove[1]._j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
                     .GetComponent<Image>().sprite = line[1];
                 if (listMove[1]._j == listMove[2]._j && x == listMove[2]._i)
@@ -1407,8 +1407,8 @@ public class bussGame : MonoBehaviour
             {
                 _matrix[x, listMove[1]._j]._gameObject.SetActive(true);
                 _matrix[x, listMove[1]._j]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
                 _matrix[x, listMove[1]._j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
                     .GetComponent<Image>().sprite = line[1];
                 if (listMove[1]._j == listMove[2]._j && x == listMove[2]._i)
@@ -1424,8 +1424,8 @@ public class bussGame : MonoBehaviour
         {
             _matrix[listMove[3]._i, x_]._gameObject.SetActive(true);
             _matrix[listMove[3]._i, x_]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
-                (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
+                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
+                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
             _matrix[listMove[3]._i, x_]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
                 .GetComponent<Image>().sprite = line[2];
         }
@@ -1481,8 +1481,8 @@ public class bussGame : MonoBehaviour
         for (int x = pMinX._i + 1; x < pMaxX._i; x++)
         {
             if (checkLineY(pMinX._i, x, pMinX._j)
-                && checkLineX(pMinX._j, pMaxX._j, x)
-                && checkLineY(x, pMaxX._i, pMaxX._j))
+                    && checkLineX(pMinX._j, pMaxX._j, x)
+                    && checkLineY(x, pMaxX._i, pMaxX._j))
             {
                 //Debug.Log("Rect y");
                 //Debug.Log("(" + pMinX._i + "," + pMinX._j + ") -> (" + x
@@ -1494,10 +1494,10 @@ public class bussGame : MonoBehaviour
                 listMove.Add(_matrix[x, pMaxX._j]);
                 listMove.Add(_matrix[pMaxX._i, pMaxX._j]);
                 _matrix[p1._i, p1._j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
-                        .GetComponent<Image>().sprite =
+                    .GetComponent<Image>().sprite =
                     _matrix[p1._i, p1._j]._infoCreate._img;
                 _matrix[p2._i, p2._j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
-                        .GetComponent<Image>().sprite =
+                    .GetComponent<Image>().sprite =
                     _matrix[p2._i, p2._j]._infoCreate._img;
                 StartCoroutine(lineRectY(listMove));
                 pMinX = pMaxX = p1 = p2 = null;
@@ -1515,8 +1515,8 @@ public class bussGame : MonoBehaviour
         {
             _matrix[i, listMove[0]._j]._gameObject.SetActive(true);
             _matrix[i, listMove[0]._j]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
-                (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
+                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
+                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
 
             _matrix[i, listMove[0]._j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
                 .GetComponent<Image>().sprite = line[1];
@@ -1526,7 +1526,7 @@ public class bussGame : MonoBehaviour
                 _matrix[i, listMove[0]._j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
                     .GetComponent<Image>().sprite = line[
                     listMove[1]._j < listMove[2]._j ? 4 : 6
-                ];
+                    ];
             }
         }
 
@@ -1538,8 +1538,8 @@ public class bussGame : MonoBehaviour
             {
                 _matrix[listMove[1]._i, y]._gameObject.SetActive(true);
                 _matrix[listMove[1]._i, y]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
                 _matrix[listMove[1]._i, y]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
                     .GetComponent<Image>().sprite = line[2];
                 if (listMove[1]._i == listMove[2]._i && y == listMove[2]._j)
@@ -1555,8 +1555,8 @@ public class bussGame : MonoBehaviour
             {
                 _matrix[listMove[1]._i, y_]._gameObject.SetActive(true);
                 _matrix[listMove[1]._i, y_]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
                 _matrix[listMove[1]._i, y_]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
                     .GetComponent<Image>().sprite = line[2];
                 if (listMove[1]._i == listMove[2]._i && y_ == listMove[2]._j)
@@ -1572,8 +1572,8 @@ public class bussGame : MonoBehaviour
         {
             _matrix[x_, listMove[3]._j]._gameObject.SetActive(true);
             _matrix[x_, listMove[3]._j]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
-                (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
+                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
+                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
             _matrix[x_, listMove[3]._j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
                 .GetComponent<Image>().sprite = line[1];
         }
@@ -1664,10 +1664,10 @@ public class bussGame : MonoBehaviour
                     }
 
                     _matrix[listMove[0]._i, listMove[0]._j]._gameObject.GetComponent<RectTransform>()
-                            .GetComponent<Button>().GetComponent<Image>().sprite =
+                        .GetComponent<Button>().GetComponent<Image>().sprite =
                         _matrix[listMove[0]._i, listMove[0]._j]._infoCreate._img;
                     _matrix[listMove[3]._i, listMove[3]._j]._gameObject.GetComponent<RectTransform>()
-                            .GetComponent<Button>().GetComponent<Image>().sprite =
+                        .GetComponent<Button>().GetComponent<Image>().sprite =
                         _matrix[listMove[3]._i, listMove[3]._j]._infoCreate._img;
                     StartCoroutine(lineMoveX(type, listMove));
 
@@ -1696,8 +1696,8 @@ public class bussGame : MonoBehaviour
             {
                 _matrix[listMove[0]._i, j]._gameObject.SetActive(true);
                 _matrix[listMove[0]._i, j]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
 
                 _matrix[listMove[0]._i, j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
                     .GetComponent<Image>().sprite = line[2];
@@ -1713,8 +1713,8 @@ public class bussGame : MonoBehaviour
             {
                 _matrix[i, listMove[1]._j]._gameObject.SetActive(true);
                 _matrix[i, listMove[1]._j]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
                 _matrix[i, listMove[1]._j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
                     .GetComponent<Image>().sprite = line[1];
             }
@@ -1723,8 +1723,8 @@ public class bussGame : MonoBehaviour
             {
                 _matrix[listMove[2]._i, j]._gameObject.SetActive(true);
                 _matrix[listMove[2]._i, j]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
                 _matrix[listMove[2]._i, j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
                     .GetComponent<Image>().sprite = line[2];
 
@@ -1773,8 +1773,8 @@ public class bussGame : MonoBehaviour
             {
                 _matrix[listMove[0]._i, y]._gameObject.SetActive(true);
                 _matrix[listMove[0]._i, y]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
 
                 _matrix[listMove[0]._i, y]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
                     .GetComponent<Image>().sprite = line[2];
@@ -1790,8 +1790,8 @@ public class bussGame : MonoBehaviour
             {
                 _matrix[x, listMove[1]._j]._gameObject.SetActive(true);
                 _matrix[x, listMove[1]._j]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
                 _matrix[x, listMove[1]._j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
                     .GetComponent<Image>().sprite = line[1];
             }
@@ -1800,8 +1800,8 @@ public class bussGame : MonoBehaviour
             {
                 _matrix[listMove[2]._i, y_]._gameObject.SetActive(true);
                 _matrix[listMove[2]._i, y_]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
                 _matrix[listMove[2]._i, y_]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
                     .GetComponent<Image>().sprite = line[2];
 
@@ -1860,7 +1860,7 @@ public class bussGame : MonoBehaviour
         if (checkLineY(pMinX._i, pMaxX._i, col))
         {
             while (_matrix[x, pMinX._j]._empty == true
-                   && _matrix[x, pMaxX._j]._empty == true)
+                    && _matrix[x, pMaxX._j]._empty == true)
             {
                 if (checkLineX(pMinX._j, pMaxX._j, x))
                 {
@@ -1886,10 +1886,10 @@ public class bussGame : MonoBehaviour
                     }
 
                     _matrix[p1._i, p1._j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
-                            .GetComponent<Image>().sprite =
+                        .GetComponent<Image>().sprite =
                         _matrix[p1._i, p1._j]._infoCreate._img;
                     _matrix[p2._i, p2._j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
-                            .GetComponent<Image>().sprite =
+                        .GetComponent<Image>().sprite =
                         _matrix[p2._i, p2._j]._infoCreate._img;
                     StartCoroutine(lineMoveY(type, listMoveY));
                     pMinX = pMaxX = p1 = p2 = null;
@@ -1912,8 +1912,8 @@ public class bussGame : MonoBehaviour
             {
                 _matrix[i, listMove[0]._j]._gameObject.SetActive(true);
                 _matrix[i, listMove[0]._j]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
                 _matrix[i, listMove[0]._j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
                     .GetComponent<Image>().sprite = line[1];
 
@@ -1928,8 +1928,8 @@ public class bussGame : MonoBehaviour
             {
                 _matrix[listMove[1]._i, x]._gameObject.SetActive(true);
                 _matrix[listMove[1]._i, x]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
                 _matrix[listMove[1]._i, x]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
                     .GetComponent<Image>().sprite = line[2];
             }
@@ -1938,8 +1938,8 @@ public class bussGame : MonoBehaviour
             {
                 _matrix[x_, listMove[2]._j]._gameObject.SetActive(true);
                 _matrix[x_, listMove[2]._j]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
                 _matrix[x_, listMove[2]._j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
                     .GetComponent<Image>().sprite = line[1];
 
@@ -1981,8 +1981,8 @@ public class bussGame : MonoBehaviour
             {
                 _matrix[i, listMove[0]._j]._gameObject.SetActive(true);
                 _matrix[i, listMove[0]._j]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
                 _matrix[i, listMove[0]._j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
                     .GetComponent<Image>().sprite = line[1];
 
@@ -1997,8 +1997,8 @@ public class bussGame : MonoBehaviour
             {
                 _matrix[listMove[1]._i, x]._gameObject.SetActive(true);
                 _matrix[listMove[1]._i, x]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
                 _matrix[listMove[1]._i, x]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
                     .GetComponent<Image>().sprite = line[2];
             }
@@ -2007,8 +2007,8 @@ public class bussGame : MonoBehaviour
             {
                 _matrix[x_, listMove[2]._j]._gameObject.SetActive(true);
                 _matrix[x_, listMove[2]._j]._gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
-                    (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.width / cols)),
+                        (float)((float)(float)(_infoBus._pnGame.rectTransform.rect.height / rows)));
                 _matrix[x_, listMove[2]._j]._gameObject.GetComponent<RectTransform>().GetComponent<Button>()
                     .GetComponent<Image>().sprite = line[1];
 
@@ -2127,7 +2127,7 @@ public class bussGame : MonoBehaviour
                         if (_matrix[i, n]._empty == false && _matrix[j, k]._empty == false)
                         {
                             if ((_matrix[i, n] != _matrix[j, k] &&
-                                 bussIdear.check2Pikachu(_matrix[i, n], _matrix[j, k])))
+                                        bussIdear.check2Pikachu(_matrix[i, n], _matrix[j, k])))
                             {
                                 _idearPiakchu.Add(_matrix[i, n]);
                                 _idearPiakchu.Add(_matrix[j, k]);
@@ -2151,10 +2151,10 @@ public class bussGame : MonoBehaviour
         else
         {
             _matrix[_idearPiakchu[0]._i, _idearPiakchu[0]._j]._gameObject.GetComponent<RectTransform>()
-                    .GetComponent<Button>().GetComponent<Image>().sprite
+                .GetComponent<Button>().GetComponent<Image>().sprite
                 = _matrix[_idearPiakchu[0]._i, _idearPiakchu[0]._j]._infoCreate._imgIdear;
             _matrix[_idearPiakchu[1]._i, _idearPiakchu[1]._j]._gameObject.GetComponent<RectTransform>()
-                    .GetComponent<Button>().GetComponent<Image>().sprite
+                .GetComponent<Button>().GetComponent<Image>().sprite
                 = _matrix[_idearPiakchu[1]._i, _idearPiakchu[1]._j]._infoCreate._imgIdear;
         }
 

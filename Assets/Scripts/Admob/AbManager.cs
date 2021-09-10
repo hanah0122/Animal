@@ -9,9 +9,9 @@ public class AbManager : MonoBehaviour
     private RewardedAd rewardedAd;
 
     // THIS IS A TEST ADS ID, WHEN YOU WANT TO PUBLISH YOUR GAME JUST REPLACE THESE ID'S WITH YOUR OWN ADMOB ID'S
-    private string BannerAdId = "ca-app-pub-3940256099942544/6300978111";
-    private string IntersitialAdId = "ca-app-pub-3940256099942544/1033173712";
-    private string RewardedVideoAdId = "ca-app-pub-3940256099942544/5224354917";
+    private string BannerAdId = "ca-app-pub-9151001313181438/3436308511";
+    private string IntersitialAdId = "ca-app-pub-9151001313181438/9987891539";
+    private string RewardedVideoAdId = "ca-app-pub-9151001313181438/4768382117";
 
     // Start is called before the first frame update
 
@@ -104,9 +104,9 @@ public class AbManager : MonoBehaviour
     public void LoadRewardedVideoAds()
     {
 #if UNITY_ANDROID
-    	string adUnitId = RewardedVideoAdId;
+        string adUnitId = RewardedVideoAdId;
 #elif UNITY_IPHONE
-        string adUnitId = "ca-app-pub-3940256099942544/1712485313";
+        string adUnitId = "ca-app-pub-9151001313181438/5801234510";
 #else
         string adUnitId = "unexpected_platform";
 #endif
