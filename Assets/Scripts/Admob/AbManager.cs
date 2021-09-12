@@ -31,6 +31,10 @@ public class AbManager : MonoBehaviour
     public Canvas CanvasGame;
     public GameObject Audio;
 
+    public GameObject Game;
+    public GameObject pnTop;
+    public GameObject Lose;
+
     void Start()
     {
         MobileAds.Initialize(InitializationStatus => { });
@@ -68,18 +72,32 @@ public class AbManager : MonoBehaviour
     private void RewardedAd_OnUserEarnedReward(object sender, Reward e)
     {
         this.CanvasGame.GetComponent<bussGame>().RewardCallback();
-        CanvasGame.gameObject.SetActive(true);
+        // CanvasGame.gameObject.SetActive(true);
+        pnTop.gameObject.SetActive(true);
         Audio.GetComponent<bussSound>().SoundMenu(false);
     }
 
     private void RewardedAd_OnAdLoaded(object sender, EventArgs e)
     {
         this.Audio.GetComponent<bussSound>().SoundMenu(true);
-        CanvasGame.gameObject.SetActive(false);
+        // CanvasGame.gameObject.SetActive(false);
+        Game.gameObject.SetActive(false);
+        Lose.gameObject.SetActive(false);
+        pnTop.gameObject.SetActive(false);
         rewardedAd.Show();
     }
 
-    // used in start func
+    private void BannerHandleOnAdLoaded(object sender, EventArgs args)
+    {
+        this.RunAdmob = true;
+    }
+
+    private void BannerHandleOnAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
+    {
+        this.RunAdmob = false;
+    }
+
+// used in start func
     // when you want to show your banner on screen
     private void RequestBanner()
     {
@@ -91,13 +109,13 @@ public class AbManager : MonoBehaviour
         string adUnitId = "unexpected_platform";
 #endif
         this.bannerAd = new BannerView(adUnitId, AdSize.SmartBanner, AdPosition.Bottom);
+        // Called when an ad request has successfully loaded.
+        this.bannerAd.OnAdLoaded += this.BannerHandleOnAdLoaded;
+        // Called when an ad request failed to load.
+        this.bannerAd.OnAdFailedToLoad += this.BannerHandleOnAdFailedToLoad;
         this.bannerAd.LoadAd(this.CreateAdRequest());
     }
 
-    public void CloseBanner()
-    {
-        bannerAd.Destroy();
-    }
 
     // Request Intersitial ads
 
@@ -134,6 +152,7 @@ public class AbManager : MonoBehaviour
             //no load interstiaAd
             CanvasGame.gameObject.SetActive(true);
             Audio.GetComponent<bussSound>().SoundMenu(false);
+            CanvasGame.GetComponent<bussGame>().AdmobGameIntersitial();
         }
 
         this.interstitial.OnAdClosed += HandleOnAdClosed;
@@ -155,11 +174,8 @@ public class AbManager : MonoBehaviour
         this.rewardedAd = new RewardedAd(adUnitId);
 
         this.rewardedAd.OnAdLoaded += RewardedAd_OnAdLoaded;
-        ;
         this.rewardedAd.OnUserEarnedReward += RewardedAd_OnUserEarnedReward;
-        ;
         this.rewardedAd.OnAdClosed += RewardedAd_OnAdClosed;
-        ;
         // Load the rewarded ad with the request.
         this.rewardedAd.LoadAd(this.CreateAdRequest());
         bannerAd.Destroy();

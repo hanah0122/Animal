@@ -98,7 +98,7 @@ public class bussGame : MonoBehaviour
 
     private void config()
     {
-        // _infoBus._level = 60;
+        // _infoBus._level = 1;
         if (_infoBus._level < 5)
         {
             rows = 8;
@@ -224,6 +224,21 @@ public class bussGame : MonoBehaviour
     public void AdmobGameIntersitial()
     {
         gameObject.SetActive(true);
+        if (TypeAdmobIntersitial == "win_game")
+        {
+            started = true;
+            PannelWinner.gameObject.SetActive(false);
+            Audio.GetComponent<bussSound>().SoundGameWin();
+            _infoTime._startTime = Time.time;
+            if (_matrix != null)
+                for (int i = 0; i < cols + 2; i++)
+                for (int j = 0; j < rows + 2; j++)
+                    Destroy(_matrix[i, j]._gameObject);
+
+            startGame();
+            bussSaveLoadData.saveGame(this, _infoTime._startTime - Time.time, timeMenu);
+        }
+
         if (TypeAdmobIntersitial == "ongame_continue")
         {
             //Audio.gameObject.GetComponent<bussSound>().UnPause();
@@ -306,9 +321,10 @@ public class bussGame : MonoBehaviour
     public void MenuContinueGame(bool puase = false)
     {
         TypeAdmobIntersitial = "load_game";
-        if (GameObject.Find("Admob").GetComponent<AbManager>().getRunAdmob() && Random.Range(0, 3) == 0 && puase == false)
+        if (GameObject.Find("Admob").GetComponent<AbManager>().getRunAdmob() && Random.Range(0, 3) == 0 &&
+            puase == false)
         {
-            GameObject.Find("Canvas").gameObject.SetActive(false);
+            // GameObject.Find("Canvas").gameObject.SetActive(false);
             GameObject.Find("Admob").GetComponent<AbManager>().ShowIntersitialAds();
         }
         else
@@ -316,38 +332,52 @@ public class bussGame : MonoBehaviour
     }
 
 
-    void OnApplicationFocus(bool hasFocus)
-    {
-        if (!hasFocus)
-        {
-            if (started)
-            {
-                pauseGame();
-                _pnLoadGame.gameObject.SetActive(false);
-                bussSaveLoadData.saveGame(this, _infoTime._startTime - Time.time, timeMenu);
-            }
-        }
-        else
-        {
-            if (_matrix != null)
-            {
-                for (int i = 0; i < cols + 2; i++)
-                for (int j = 0; j < rows + 2; j++)
-                    Destroy(_matrix[i, j]._gameObject);
+    // void OnApplicationFocus(bool hasFocus)
+    // {
+    //     if (!hasFocus)
+    //     {
+    //         if (started)
+    //         {
+    //             pauseGame();
+    //             _pnLoadGame.gameObject.SetActive(false);
+    //             bussSaveLoadData.saveGame(this, _infoTime._startTime - Time.time, timeMenu);
+    //         }
+    //     }
+    //     else
+    //     {
+    //         if (_matrix != null)
+    //         {
+    //             for (int i = 0; i < cols + 2; i++)
+    //             for (int j = 0; j < rows + 2; j++)
+    //                 Destroy(_matrix[i, j]._gameObject);
+    //
+    //             dataGame = bussSaveLoadData.loadGame();
+    //             LoadGame();
+    //             MenuContinueGame(true);
+    //             //Audio.gameObject.GetComponent<bussSound>().UnPause();
+    //         }
+    //     }
+    // }
 
-                dataGame = bussSaveLoadData.loadGame();
-                LoadGame();
-                MenuContinueGame(true);
-                //Audio.gameObject.GetComponent<bussSound>().UnPause();
-            }
-        }
-    }
     //void OnApplicationQuit()
     //{
     //    bussSaveLoadData.saveGame(this, _infoTime._startTime - Time.time, timeMenu);
     //}
     void Update()
     {
+        if (GameObject.Find("Admob").GetComponent<AbManager>().getRunAdmob())
+        {
+            if (_infoBus._countReload == 0)
+                btnReload.GetComponentInChildren<Text>().text = "Thêm";
+            if (_infoBus._countIdear == 0)
+                btnIdear.GetComponentInChildren<Text>().text = "Thêm";
+        }
+        else
+        {
+            btnIdear.GetComponentInChildren<Text>().text = _infoBus._countIdear.ToString();
+            btnReload.GetComponentInChildren<Text>().text = _infoBus._countReload.ToString();
+        }
+
         if (started)
         {
             _infoTime._timer = Time.time - _infoTime._startTime;
@@ -372,6 +402,7 @@ public class bussGame : MonoBehaviour
                     if (_infoBus._pnGame && _pnLose)
                     {
                         started = false;
+                        _infoTime._particleSystem.Pause();
                         if (_infoBus._level >= 1 && GameObject.Find("Admob").GetComponent<AbManager>().getRunAdmob())
                         {
                             txtAdmob.text = "Xem quảng cáo để chơi tiếp Level: " + (_infoBus._level + 1).ToString();
@@ -406,9 +437,10 @@ public class bussGame : MonoBehaviour
         this.type_Reward = "level";
         if (GameObject.Find("Admob").GetComponent<AbManager>().getRunAdmob())
         {
-            GameObject.Find("Admob").GetComponent<AbManager>().LoadRewardedVideoAds();    
+            GameObject.Find("Admob").GetComponent<AbManager>().LoadRewardedVideoAds();
         }
     }
+
     public void NoViewAdmob(bool noview = true)
     {
         started = true;
@@ -426,10 +458,17 @@ public class bussGame : MonoBehaviour
             txtLevel.text = _bussLevel.txtLevel(_infoBus._level);
         }
 
-        if (GameObject.Find("Admob").GetComponent<AbManager>().getRunAdmob() && _infoBus._level >= 1 )
+        if (GameObject.Find("Admob").GetComponent<AbManager>().getRunAdmob() && _infoBus._level >= 1)
         {
             _pnLose.gameObject.SetActive(false);
-            StartCoroutine(reloadGame(true));
+            _infoTime._startTime = Time.time;
+            if (_matrix != null)
+                for (int i = 0; i < cols + 2; i++)
+                for (int j = 0; j < rows + 2; j++)
+                    Destroy(_matrix[i, j]._gameObject);
+
+            startGame();
+            bussSaveLoadData.saveGame(this, _infoTime._startTime - Time.time, timeMenu);
         }
         else
             this.StartCoroutine(this.LoadGameNoHasAdmob());
@@ -467,7 +506,7 @@ public class bussGame : MonoBehaviour
         TypeAdmobIntersitial = "ongame_continue";
         if (GameObject.Find("Admob").GetComponent<AbManager>().getRunAdmob() && Random.Range(0, 3) == 0)
         {
-            GameObject.Find("Canvas").gameObject.SetActive(false);
+            // GameObject.Find("Canvas").gameObject.SetActive(false);
             GameObject.Find("Admob").GetComponent<AbManager>().ShowIntersitialAds();
         }
         else
@@ -536,7 +575,7 @@ public class bussGame : MonoBehaviour
         {
             _infoBus._countIdear -= 1;
             btnIdear.GetComponentInChildren<Text>().text =
-                (_infoBus._countIdear == 0 && GameObject.Find("Admob").GetComponent<AbManager>().RunAdmob) 
+                (_infoBus._countIdear == 0 && GameObject.Find("Admob").GetComponent<AbManager>().RunAdmob)
                     ? "Thêm"
                     : _infoBus._countIdear.ToString();
             _matrix[_idearPiakchu[0]._i, _idearPiakchu[0]._j]._gameObject.GetComponent<RectTransform>()
@@ -696,14 +735,9 @@ public class bussGame : MonoBehaviour
         // Debug.Log(_infoCreatePikachu.Count);
         _infoCreatePikachu.Clear();
         aiIDear();
-        this.StartCoroutine(this.SoundStartGame());
-    }
-
-    private IEnumerator SoundStartGame()
-    {
-        yield return new WaitForSeconds(1f);
         Audio.GetComponent<bussSound>().SoungBegin();
     }
+
 
     #region Move
 
@@ -886,15 +920,26 @@ public class bussGame : MonoBehaviour
 
     private IEnumerator WinGame()
     {
-        Audio.GetComponent<bussSound>().SoundGameWin();
+        TypeAdmobIntersitial = "win_game";
         PannelWinner.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1f);
-        PannelWinner.gameObject.SetActive(false);
         dataGame = null;
         _infoBus._level += 1;
+        started = false;
         txtLevel.text = _bussLevel.txtLevel(_infoBus._level);
-        StartCoroutine(reloadGame(false));
+        if (GameObject.Find("Admob").GetComponent<AbManager>().getRunAdmob() && Random.Range(0, 3) != 10)
+        {
+            GameObject.Find("Admob").GetComponent<AbManager>().ShowIntersitialAds();
+        }
+        else
+        {
+            started = true;
+            Audio.GetComponent<bussSound>().SoundGameWin();
+            yield return new WaitForSeconds(1f);
+            PannelWinner.gameObject.SetActive(false);
+            this.StartCoroutine(this.reloadGame(false));
+        }
     }
+
 
     private void moveSuccess(List<infoPikachu> _pikachuMoveSuccess)
     {
@@ -2113,24 +2158,16 @@ public class bussGame : MonoBehaviour
         }
     }
 
-    private IEnumerator SoundReloadButton()
-    {
-        yield return new WaitForSeconds(0.3f);
-        Audio.GetComponent<bussSound>().SoundReload();
-    }
 
     public void reLoadRamdom()
     {
         //Audio.GetComponent<bussSound>().SoundButton();
         if (_infoBus._countReload > 0)
         {
-            this.StartCoroutine(this.SoundReloadButton());
+            Audio.GetComponent<bussSound>().SoungBegin();
             btnReload.interactable = false;
             if (_checkPiakchu.Count > 0)
-            {
                 _checkPiakchu.Clear();
-            }
-
             _infoBus._countReload -= 1;
             btnReload.GetComponentInChildren<Text>().text =
                 (_infoBus._countReload == 0 && GameObject.Find("Admob").GetComponent<AbManager>().RunAdmob)
@@ -2154,14 +2191,17 @@ public class bussGame : MonoBehaviour
 
     public void RewardCallback()
     {
+        Audio.GetComponent<bussSound>().SoundAdmob();
         if (this.type_Reward == "level")
         {
-           this.NoViewAdmob(false); 
+            this.NoViewAdmob(false);
         }
+
         if (this.type_Reward == "idear")
         {
             this._infoBus._countIdear += 1;
             btnIdear.GetComponentInChildren<Text>().text = _infoBus._countIdear.ToString();
+            this.btnViewReload.GetComponentInChildren<Text>().text = "Có";
             this.NoViewAddCount();
         }
 
@@ -2169,18 +2209,11 @@ public class bussGame : MonoBehaviour
         {
             this._infoBus._countReload += 1;
             btnReload.GetComponentInChildren<Text>().text = _infoBus._countReload.ToString();
+            this.btnViewReload.GetComponentInChildren<Text>().text = "Có";
             this.NoViewAddCount();
         }
 
         bussSaveLoadData.saveGame(this, _infoTime._startTime - Time.time, timeMenu);
-    }
-
-    public void RewardLoaded()
-    {
-        if (this.type_Reward == "reload")
-        {
-            this.btnViewReload.GetComponentInChildren<Text>().text = "Có";
-        }
     }
 
     public void NoViewAddCount()
@@ -2296,7 +2329,6 @@ public class bussGame : MonoBehaviour
 
 
         bussIdear = null;
-
         if (!btnReload.interactable) btnReload.interactable = true;
         //bussSaveLoadData.saveGame(this, _infoTime._startTime - Time.time, timeMenu);
     }

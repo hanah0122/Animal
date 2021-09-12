@@ -9,12 +9,20 @@ public class bussSound : MonoBehaviour
     public AudioSource MoveTrue;
     public AudioSource MoveFlase;
     public AudioSource Begin;
-    public AudioSource ReLoad;
+    // public AudioSource ReLoad;
     public AudioSource Idear;
+    public AudioSource Admob;
     void Start()
     {
         this.Menu.volume = 0.25f;
         this.Menu.Play();
+    }
+    public void SoundAdmob(bool play = true)
+    {
+        if (play)
+            this.Admob.Play();
+        else
+            this.Admob.Stop();
     }
     public void SoundMenu(bool puase = true)
     {
@@ -36,13 +44,13 @@ public class bussSound : MonoBehaviour
             this.Begin.Stop();
     }
 
-    public void SoundReload(bool play = true)
-    {
-        if (play)
-            this.ReLoad.Play();
-        else
-            this.ReLoad.Stop();
-    }
+    // public void SoundReload(bool play = true)
+    // {
+    //     if (play)
+    //         this.ReLoad.Play();
+    //     else
+    //         this.ReLoad.Stop();
+    // }
 
     public void SoundIdea(bool play = true)
     {

@@ -1582,6 +1582,9 @@ MonoBehaviour:
   RunAdmob: 0
   CanvasGame: {fileID: 936495899}
   Audio: {fileID: 1479464453}
+  Game: {fileID: 28821232}
+  pnTop: {fileID: 2091525198}
+  Lose: {fileID: 398900130}
 --- !u!4 &325447109
 Transform:
   m_ObjectHideFlags: 0
@@ -3468,7 +3471,7 @@ GameObject:
   - component: {fileID: 935195051}
   - component: {fileID: 935195050}
   m_Layer: 0
-  m_Name: Reload
+  m_Name: Admob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3484,7 +3487,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3b7d1a4dd9b69242494ad07aafe473a7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 49a9d9fb139017945b9326104fe730df, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -4189,14 +4192,14 @@ MonoBehaviour:
       - m_Target: {fileID: 936495901}
         m_TargetAssemblyTypeName: bussGame, Assembly-CSharp
         m_MethodName: NoViewAdmob
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1197135699
 MonoBehaviour:
@@ -4848,8 +4851,8 @@ MonoBehaviour:
   MoveTrue: {fileID: 589493134}
   MoveFlase: {fileID: 458015601}
   Begin: {fileID: 1535522063}
-  ReLoad: {fileID: 935195050}
   Idear: {fileID: 1846652152}
+  Admob: {fileID: 935195050}
 --- !u!4 &1479464455
 Transform:
   m_ObjectHideFlags: 0
@@ -5534,7 +5537,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 230276382472937434, guid: ff16b8059b9364567a18fab7754677c2, type: 3}
   m_PrefabInstance: {fileID: 410973050}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2091525198}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -6096,3 +6099,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2091525198 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 230276382472937432, guid: ff16b8059b9364567a18fab7754677c2, type: 3}
+  m_PrefabInstance: {fileID: 410973050}
+  m_PrefabAsset: {fileID: 0}
