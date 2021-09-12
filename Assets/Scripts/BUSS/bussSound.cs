@@ -16,6 +16,17 @@ public class bussSound : MonoBehaviour
         this.Menu.volume = 0.25f;
         this.Menu.Play();
     }
+    public void SoundMenu(bool puase = true)
+    {
+        if (puase)
+        {
+            this.Menu.Pause();
+        }
+        else
+        {
+            this.Menu.UnPause();
+        }
+    }
 
     public void SoungBegin(bool play = true)
     {
