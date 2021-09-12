@@ -971,6 +971,10 @@ public class bussGame : MonoBehaviour
                             break;
                     }
                 }
+                else
+                {
+                    this.aiIDear();
+                }
             }
             else
             {
