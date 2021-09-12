@@ -332,32 +332,32 @@ public class bussGame : MonoBehaviour
     }
 
 
-    // void OnApplicationFocus(bool hasFocus)
-    // {
-    //     if (!hasFocus)
-    //     {
-    //         if (started)
-    //         {
-    //             pauseGame();
-    //             _pnLoadGame.gameObject.SetActive(false);
-    //             bussSaveLoadData.saveGame(this, _infoTime._startTime - Time.time, timeMenu);
-    //         }
-    //     }
-    //     else
-    //     {
-    //         if (_matrix != null)
-    //         {
-    //             for (int i = 0; i < cols + 2; i++)
-    //             for (int j = 0; j < rows + 2; j++)
-    //                 Destroy(_matrix[i, j]._gameObject);
-    //
-    //             dataGame = bussSaveLoadData.loadGame();
-    //             LoadGame();
-    //             MenuContinueGame(true);
-    //             //Audio.gameObject.GetComponent<bussSound>().UnPause();
-    //         }
-    //     }
-    // }
+    void OnApplicationFocus(bool hasFocus)
+    {
+        if (!hasFocus)
+        {
+            if (started)
+            {
+                pauseGame();
+                _pnLoadGame.gameObject.SetActive(false);
+                bussSaveLoadData.saveGame(this, _infoTime._startTime - Time.time, timeMenu);
+            }
+        }
+        else
+        {
+            if (_matrix != null)
+            {
+                for (int i = 0; i < cols + 2; i++)
+                for (int j = 0; j < rows + 2; j++)
+                    Destroy(_matrix[i, j]._gameObject);
+    
+                dataGame = bussSaveLoadData.loadGame();
+                LoadGame();
+                MenuContinueGame(true);
+                //Audio.gameObject.GetComponent<bussSound>().UnPause();
+            }
+        }
+    }
 
     //void OnApplicationQuit()
     //{
@@ -2321,15 +2321,15 @@ public class bussGame : MonoBehaviour
 
         if (_idearPiakchu.Count == 0)
             reload();
-        else
-        {
-            _matrix[_idearPiakchu[0]._i, _idearPiakchu[0]._j]._gameObject.GetComponent<RectTransform>()
-                    .GetComponent<Button>().GetComponent<Image>().sprite
-                = _matrix[_idearPiakchu[0]._i, _idearPiakchu[0]._j]._infoCreate._imgIdear;
-            _matrix[_idearPiakchu[1]._i, _idearPiakchu[1]._j]._gameObject.GetComponent<RectTransform>()
-                    .GetComponent<Button>().GetComponent<Image>().sprite
-                = _matrix[_idearPiakchu[1]._i, _idearPiakchu[1]._j]._infoCreate._imgIdear;
-        }
+        // else
+        // {
+        //     _matrix[_idearPiakchu[0]._i, _idearPiakchu[0]._j]._gameObject.GetComponent<RectTransform>()
+        //             .GetComponent<Button>().GetComponent<Image>().sprite
+        //         = _matrix[_idearPiakchu[0]._i, _idearPiakchu[0]._j]._infoCreate._imgIdear;
+        //     _matrix[_idearPiakchu[1]._i, _idearPiakchu[1]._j]._gameObject.GetComponent<RectTransform>()
+        //             .GetComponent<Button>().GetComponent<Image>().sprite
+        //         = _matrix[_idearPiakchu[1]._i, _idearPiakchu[1]._j]._infoCreate._imgIdear;
+        // }
 
 
         bussIdear = null;
